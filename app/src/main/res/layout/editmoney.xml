@@ -136,7 +136,7 @@
         app:backgroundTint="@color/Secondary400"
         app:cornerRadius="6dp"
         app:icon="@drawable/ic_close"
-        app:iconTint="@color/TextPrimary"
+        app:iconTint="@color/Primary800"
         app:insetBottom="0dp"
         app:insetTop="0dp"
         app:insetLeft="0dp"

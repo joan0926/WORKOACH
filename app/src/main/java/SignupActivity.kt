@@ -25,12 +25,13 @@ class SignupActivity : AppCompatActivity() {
         }
 
         // 🔹 생년월일 EditText
-        val etJobDate = findViewById<EditText>(R.id.editTextDate)
+        val etJobDate = findViewById<EditText>(R.id.text_Date)
 
 
-        val editTextDate = findViewById<EditText>(R.id.editTextDate)
+        val editTextDate = findViewById<EditText>(R.id.text_Date)
         val year = Calendar.getInstance().get(Calendar.YEAR)
         editTextDate.hint = "$year.00.00 ▼"
+
 
 
 
