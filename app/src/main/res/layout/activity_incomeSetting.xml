@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".Money">
+
+    <TextView
+        android:id="@+id/incomeSalary"
+        style="@style/TextAppearance.Material3.TitleLarge"
+        android:layout_width="81dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/bold"
+        android:text="수입 금액"
+        android:textColor="@color/Primary800"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btncloseincomeSetting" />
+
+    <EditText
+        android:id="@+id/TextincomeSalary"
+        android:layout_width="296dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/edittext_outline"
+        android:ems="10"
+        android:fontFamily="@font/medium"
+        android:gravity="center"
+        android:hint="수입을 입력하세요"
+        android:inputType="number"
+        android:textColorHint="@color/TextSecondary"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@id/incomeSalary" />
+
+    <TextView
+        android:id="@+id/incomeDate"
+        style="@style/TextAppearance.Material3.TitleLarge"
+        android:layout_width="81dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/semi_bold"
+        android:text="수입 날짜"
+        android:textColor="@color/Primary800"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/TextincomeSalary" />
+
+    <EditText
+        android:id="@+id/TextincomeDate"
+        android:layout_width="296dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/edittext_outline"
+        android:clickable="true"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/incomeDate" />
+
+    <Button
+        android:id="@+id/btnincomeSetting"
+        android:layout_width="140dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="172dp"
+        android:layout_marginTop="284dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/Secondary600"
+        android:fontFamily="@font/medium"
+        android:text="수입 등록하기"
+        android:textColor="@color/Primary700"
+        android:textSize="12dp"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/incomeSettingheader"
+        android:layout_width="124dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:fontFamily="@font/semi_bold"
+        android:text="수입 설정하기"
+        android:textColor="@color/Primary800"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btncloseincomeSetting"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerInside"
+        android:background="@drawable/btn_close_bg"
+        android:src="@drawable/ic_close"
+        android:backgroundTint="@null"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

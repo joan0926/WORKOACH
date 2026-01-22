@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".Money">
+
+    <ImageButton
+        android:id="@+id/btnclose_editprofile"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerInside"
+        android:background="@drawable/btn_close_bg"
+        android:src="@drawable/ic_close"
+        android:backgroundTint="@null"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/editprofile_Header"
+        android:layout_width="141dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/semi_bold"
+        android:gravity="center"
+        android:text="프로필 수정하기"
+        android:textColor="@color/Primary800"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/editprofile_Name"
+        style="@style/TextAppearance.Material3.TitleLarge"
+        android:layout_width="81dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/bold"
+        android:text="이름"
+        android:textColor="@color/Primary900"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnclose_editprofile" />
+
+    <EditText
+        android:id="@+id/Texteditprofile_Name"
+        android:layout_width="296dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/edittext_outline"
+        android:ems="10"
+        android:fontFamily="@font/medium"
+        android:gravity="center"
+        android:hint="이름을 입력하세요"
+        android:inputType="text"
+        android:textColorHint="@color/TextSecondary"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editprofile_Name" />
+
+    <TextView
+        android:id="@+id/employ_Date"
+        style="@style/TextAppearance.Material3.TitleLarge"
+        android:layout_width="97dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/semi_bold"
+        android:text="취직일"
+        android:textColor="@color/Primary900"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Texteditprofile_Name" />
+
+    <EditText
+        android:id="@+id/TextemployDate"
+        android:layout_width="296dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/edittext_outline"
+        android:clickable="true"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/employ_Date" />
+
+    <Button
+        android:id="@+id/btneditprofile"
+        android:layout_width="140dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="172dp"
+        android:layout_marginTop="284dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/Secondary600"
+        android:fontFamily="@font/medium"
+        android:text="프로필 수정하기"
+        android:textColor="@color/Primary700"
+        android:textSize="12dp"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

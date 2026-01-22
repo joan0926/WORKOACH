@@ -3,109 +3,120 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     tools:context=".Money">
 
-
+    <ImageButton
+        android:id="@+id/btncloseeditmoney"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerInside"
+        android:background="@drawable/btn_close_bg"
+        android:src="@drawable/ic_close"
+        android:backgroundTint="@null"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <TextView
-        android:id="@+id/text_MoneyTitle"
-        style="@style/TextAppearance.Material3.TitleLarge"
+        android:id="@+id/editMoneyheader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/bg_text_button"
-        android:gravity="center"
-        android:paddingLeft="8dp"
-        android:paddingTop="4dp"
-        android:paddingRight="8dp"
-        android:paddingBottom="4dp"
-        android:text="월급 설정하기"
         android:fontFamily="@font/semi_bold"
-        android:textSize="16dp"
+        android:text="월급 수정하기"
         android:textColor="@color/Primary800"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text_WorkNameTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/Companyname"
+        style="@style/TextAppearance.Material3.TitleLarge"
+        android:layout_width="81dp"
+        android:layout_height="24dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="직장명"
         android:fontFamily="@font/semi_bold"
-        android:textSize="16dp"
+        android:text="직장명"
         android:textColor="@color/Primary800"
+        android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_MoneyTitle" />
+        app:layout_constraintTop_toBottomOf="@id/btncloseeditmoney" />
 
     <EditText
-        android:id="@+id/text_WorkName"
-        android:layout_width="0dp"
+        android:id="@+id/TextCompanyname"
+        android:layout_width="296dp"
         android:layout_height="44dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/edittext_outline"
         android:ems="10"
+        android:fontFamily="@font/medium"
         android:gravity="center"
         android:hint="직장 이름을 입력하세요"
         android:inputType="text"
-        android:fontFamily="@font/medium"
+        android:textColorHint="@color/TextSecondary"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_WorkNameTitle" />
+
+        app:layout_constraintTop_toBottomOf="@+id/Companyname" />
 
     <TextView
-        android:id="@+id/text_TakeMoneyTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/contractSalary"
+        style="@style/TextAppearance.Material3.TitleLarge"
+        android:layout_width="81dp"
+        android:layout_height="24dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="계약 월급"
         android:fontFamily="@font/semi_bold"
-        android:textSize="16dp"
+        android:text="계약 월급"
         android:textColor="@color/Primary800"
+        android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_WorkName" />
+        app:layout_constraintTop_toBottomOf="@id/TextCompanyname" />
 
     <EditText
-        android:id="@+id/text_TakeMoney"
-        android:layout_width="0dp"
+        android:id="@+id/TextcontractSalary"
+        android:layout_width="296dp"
         android:layout_height="44dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/edittext_outline"
         android:ems="10"
+        android:fontFamily="@font/medium"
         android:gravity="center"
         android:hint="월급을 입력하세요"
-        android:inputType="text"
-        android:fontFamily="@font/medium"
+        android:inputType="numberDecimal"
+        android:textColorHint="@color/TextSecondary"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_TakeMoneyTitle" />
+        app:layout_constraintTop_toBottomOf="@id/contractSalary" />
 
     <TextView
-        android:id="@+id/text_MoneyDateTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/SalaryDate"
+        style="@style/TextAppearance.Material3.TitleLarge"
+        android:layout_width="81dp"
+        android:layout_height="24dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="급여일"
         android:fontFamily="@font/semi_bold"
+        android:text="급여일"
         android:textColor="@color/Primary800"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_TakeMoney" />
+        app:layout_constraintTop_toBottomOf="@id/TextcontractSalary" />
 
     <EditText
-        android:id="@+id/text_MoneyDate"
-        android:layout_width="0dp"
+        android:id="@+id/TextSalaryDate"
+        android:layout_width="296dp"
         android:layout_height="44dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
@@ -114,28 +125,31 @@
         android:clickable="true"
         android:ems="10"
         android:focusable="false"
-        android:gravity="center"
         android:inputType="none"
-        android:fontFamily="@font/medium"
-        android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_MoneyDateTitle" />
+        app:layout_constraintTop_toBottomOf="@id/SalaryDate" />
 
     <Button
-        android:id="@+id/button_Money"
-        android:layout_width="156dp"
+        android:id="@+id/btnEditMoney"
+        android:layout_width="140dp"
         android:layout_height="44dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="172dp"
+        android:layout_marginTop="390dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/Secondary600"
-        android:text="월급 설정하기"
-        android:textColor="@color/Primary700"
-        app:cornerRadius="8dp"
         android:fontFamily="@font/medium"
+        android:text="월급 수정하기"
+        android:textColor="@color/Primary700"
         android:textSize="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_MoneyDate" />
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
