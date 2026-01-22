@@ -6,5 +6,20 @@
     <color name="Secondary500">#F6F4DF</color>
     <color name="Secondary600">#F3EFC9</color>
     <color name="Secondary700">#ECE69C</color>
-    <color name="TextPrimary">#051E0D</color>
+    <color name="Secondary800">#ECE269</color>
+    <color name="Secondary900">#F2E231</color>
+    <color name="Secondary950">#EDDA02</color>
+    <color name="Primary50">#C8E5D1</color>
+    <color name="Primary100">#B1DCBE</color>
+    <color name="Primary200">#97D4AB</color>
+    <color name="Primary300">#65C583</color>
+    <color name="Primary400">#3CAC5F</color>
+    <color name="Primary500">#349352</color>
+    <color name="Primary600">#268042</color>
+    <color name="Primary700">#145127</color>
+    <color name="Primary800">#051E0D</color>
+    <color name="Primary900">#051E0D</color>
+    <color name="TextSecondary">#757575</color>
+    <color name="TextDisabled">#AAAAAA</color>
+    <color name="Warning">#F76763</color>
 </resources>
