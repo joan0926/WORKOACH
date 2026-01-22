@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WORKOACH">
         <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
             android:name=".ProgressActivity"
             android:exported="false" />
         <activity
