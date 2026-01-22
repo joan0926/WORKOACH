@@ -8,135 +8,134 @@
     tools:context=".Money">
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/text_MoneyTitle"
         style="@style/TextAppearance.Material3.TitleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="29dp"
-        android:text="직장명"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_text_button"
+        android:gravity="center"
+        android:paddingLeft="8dp"
+        android:paddingTop="4dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="4dp"
+        android:text="월급 설정하기"
+        android:fontFamily="@font/semi_bold"
+        android:textSize="16dp"
+        android:textColor="@color/Primary800"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_WorkNameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="직장명"
+        android:fontFamily="@font/semi_bold"
+        android:textSize="16dp"
+        android:textColor="@color/Primary800"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_MoneyTitle" />
 
     <EditText
-        android:id="@+id/editTextText"
-        android:background="@drawable/edittext_outline"
-        android:gravity="center"
-        android:layout_width="340dp"
-        android:layout_height="48dp"
+        android:id="@+id/text_WorkName"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/edittext_outline"
         android:ems="10"
+        android:gravity="center"
         android:hint="직장 이름을 입력하세요"
         android:inputType="text"
+        android:fontFamily="@font/medium"
+        android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/text_WorkNameTitle" />
 
     <TextView
-        android:id="@+id/textView7"
-        style="@style/TextAppearance.Material3.TitleLarge"
+        android:id="@+id/text_TakeMoneyTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="계약 월급"
+        android:fontFamily="@font/semi_bold"
+        android:textSize="16dp"
+        android:textColor="@color/Primary800"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintTop_toBottomOf="@+id/text_WorkName" />
 
     <EditText
-        android:id="@+id/editTextNumberDecimal"
-        android:background="@drawable/edittext_outline"
-        android:gravity="center"
-        android:layout_width="340dp"
-        android:layout_height="48dp"
+        android:id="@+id/text_TakeMoney"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/edittext_outline"
         android:ems="10"
+        android:gravity="center"
         android:hint="월급을 입력하세요"
-        android:inputType="numberDecimal"
+        android:inputType="text"
+        android:fontFamily="@font/medium"
+        android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="189dp"
-        android:layout_height="108dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal">
-
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="세전" />
-
-        <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="세후 (실수령액)" />
-    </RadioGroup>
+        app:layout_constraintTop_toBottomOf="@+id/text_TakeMoneyTitle" />
 
     <TextView
-        android:id="@+id/textView8"
-        style="@style/TextAppearance.Material3.TitleLarge"
+        android:id="@+id/text_MoneyDateTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="급여일"
+        android:fontFamily="@font/semi_bold"
+        android:textColor="@color/Primary800"
+        android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/text_TakeMoney" />
 
     <EditText
-        android:id="@+id/editTextDate2"
-        android:background="@drawable/edittext_outline"
-        android:gravity="center"
-        android:layout_width="340dp"
-        android:layout_height="48dp"
+        android:id="@+id/text_MoneyDate"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/edittext_outline"
         android:clickable="true"
         android:ems="10"
         android:focusable="false"
+        android:gravity="center"
         android:inputType="none"
+        android:fontFamily="@font/medium"
+        android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/text_MoneyDateTitle" />
 
     <Button
-        android:id="@+id/profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/button_Money"
+        android:layout_width="156dp"
+        android:layout_height="44dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="35dp"
-        android:backgroundTint="#F3EFC9"
-        android:text="프로필 등록하기"
-        app:cornerRadius="20px"
-        android:textColor="#145127"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate2" />
-
-    <TextView
-        android:id="@+id/textView10"
-        style="@style/TextAppearance.Material3.TitleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="36dp"
-        android:background="@drawable/bg_text_button"
-        android:gravity="center"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/Secondary600"
         android:text="월급 설정하기"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="@color/Primary700"
+        app:cornerRadius="8dp"
+        android:fontFamily="@font/medium"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_MoneyDate" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
