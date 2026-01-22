@@ -2,7 +2,9 @@ package com.example.workoach
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +18,11 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_signup)
+        val btnProfile = findViewById<Button>(R.id.button_Profile)
+
+        btnProfile.setOnClickListener {
+            val intent = Intent(this, ProgressActivity::class.java)   //홈대신프로그래스에연결해둠
+            startActivity(intent)}
 
         // Edge-to-Edge padding
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -31,6 +38,7 @@ class SignupActivity : AppCompatActivity() {
         val editTextDate = findViewById<EditText>(R.id.text_Date)
         val year = Calendar.getInstance().get(Calendar.YEAR)
         editTextDate.hint = "$year.00.00 ▼"
+
 
 
 
@@ -53,6 +61,8 @@ class SignupActivity : AppCompatActivity() {
                 year,
                 month,
                 day
+
+
             )
 
             datePickerDialog.show()

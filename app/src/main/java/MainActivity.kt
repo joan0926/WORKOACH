@@ -15,16 +15,22 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        val btnSignup = findViewById<Button>(R.id.button3)
+        val btnSignupEnt = findViewById<Button>(R.id.button_Signup_Enter)
+        val btnloginEnt = findViewById<Button>(R.id.button_login_Enter)
 
-        btnSignup.setOnClickListener {
+        btnSignupEnt.setOnClickListener {
             val intent = Intent(this, SignupActivity::class.java)
-            startActivity(intent)
+            startActivity(intent)}
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.join)) { v, insets ->
+            btnloginEnt.setOnClickListener {
+            val intent = Intent(this, Login::class.java)
+            startActivity(intent)}
+
+
+                ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.join)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
     }
-}}
+}

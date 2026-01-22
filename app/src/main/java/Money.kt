@@ -17,7 +17,7 @@ class Money : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_money)
 
-        val editTextDate = findViewById<EditText>(R.id.editTextDate)
+        val editTextDate = findViewById<EditText>(R.id.text_MoneyDate)
         val year = Calendar.getInstance().get(Calendar.YEAR)
         editTextDate.hint = "$year.00.00 ▼"
 
