@@ -21,28 +21,41 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
+        android:id="@+id/button_login_Enter"
+        android:layout_width="156dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="48dp"
-        android:backgroundTint="#F3EFC9"
-        android:text="회원가입"
-        android:textColor="#145127"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:text="로그인"
         app:cornerRadius="20px"
-        app:layout_constraintEnd_toStartOf="@+id/login"
-        tools:layout_editor_absoluteY="465dp" />
+        android:fontFamily="@font/medium"
+        android:textSize="12dp"
+        android:backgroundTint="@color/Secondary600"
+        android:textColor="@color/Primary700"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
+
 
     <Button
-        android:id="@+id/login"
-        android:layout_width="114dp"
+        android:id="@+id/button_Signup_Enter"
+        android:layout_width="156dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="100dp"
-        android:backgroundTint="#F3EFC9"
-        android:text="로그인"
-        android:textColor="#145127"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="16dp"
+        android:text="회원가입"
         app:cornerRadius="20px"
+        android:fontFamily="@font/medium"
+        android:textSize="12dp"
+        android:textColor="@color/Secondary300"
+        android:backgroundTint="@color/Primary500"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="465dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_login_Enter" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
