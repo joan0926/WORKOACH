@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageButton
+        android:id="@+id/btnclose_accountmanage"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerInside"
+        android:background="@drawable/btn_close_bg"
+        android:src="@drawable/ic_close"
+        android:backgroundTint="@null"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/accountmanage_header"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="123.5dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="123.5dp"
+        android:fontFamily="@font/semi_bold"
+        android:gravity="center"
+        android:text="계정 관리"
+        android:textColor="@color/Primary800"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnlogout"
+        android:layout_width="296dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_white_button"
+        android:backgroundTint="@null"
+        app:backgroundTint="@null"
+        android:text="로그아웃"
+        android:textSize="12dp"
+        android:textColor="@color/TextDisabled"
+        android:fontFamily="@font/medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btndelaccount"
+        android:layout_width="296dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_white_button"
+        android:backgroundTint="@null"
+        android:fontFamily="@font/medium"
+        android:text="계정삭제"
+        android:textColor="@color/TextDisabled"
+        android:textSize="12dp"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnlogout" />
+
+    <Button
+        android:id="@+id/btnchange_password"
+        android:layout_width="296dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_white_button"
+        android:backgroundTint="@null"
+        android:fontFamily="@font/medium"
+        android:text="비밀번호 변경"
+        android:textColor="@color/TextDisabled"
+        android:textSize="12dp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btndelaccount" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

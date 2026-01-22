@@ -136,7 +136,7 @@
         android:layout_height="44dp"
         android:layout_marginStart="172dp"
         android:layout_marginTop="390dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/Secondary600"
         android:fontFamily="@font/medium"
         android:text="월급 수정하기"

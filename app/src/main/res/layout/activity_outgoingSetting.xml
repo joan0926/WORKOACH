@@ -104,7 +104,7 @@
         android:layout_height="44dp"
         android:layout_marginStart="172dp"
         android:layout_marginTop="284dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/Secondary600"
         android:fontFamily="@font/medium"
         android:text="지출 등록하기"
