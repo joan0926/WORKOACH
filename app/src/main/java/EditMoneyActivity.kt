@@ -24,6 +24,9 @@ class EditMoneyActivity : AppCompatActivity(){
 
         initView()
         setListeners()
+        Btn_Close.setOnClickListener {
+            finish()
+        }
 
     }
 
@@ -86,9 +89,7 @@ class EditMoneyActivity : AppCompatActivity(){
             //액티비티 종료
             finish()
         }
-        Btn_Close.setOnClickListener {
-            finish()
-        }
+
     }
 
 
