@@ -1,6 +1,8 @@
 package com.example.workoach
 
+import android.app.Dialog
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -14,16 +16,27 @@ class ProgressActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_progress)
 
-        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
-        val tvPercent = findViewById<TextView>(R.id.tvPercent)
 
-        // 예시 데이터
-        val goalAmount = 1_000_000   // 목표 금액
-        val currentAmount = 450_000  // 현재 금액
+                lateinit var button: Button
 
-        val percent = (currentAmount * 100) / goalAmount
+                button = findViewById<Button>(R.id.button)
 
-        progressBar.progress = percent
-        tvPercent.text = "$percent%"
+                button.setOnClickListener {
+                    showCustomDialog()
+                }
+
+            }
+
+            fun showCustomDialog() { //다이얼로그 뜨기
+                val dialog = Dialog(this)
+
+                val view = layoutInflater.inflate(R.layout.activity_editmoney, null)
+
+                dialog.setContentView(view)
+                dialog.show()
+            }
+
+
+
     }
-}
+
