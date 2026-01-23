@@ -1,0 +1,55 @@
+package com.example.workoach
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+
+class SavingSetting : AppCompatActivity() {
+    private lateinit var Text_saving: EditText
+    private lateinit var Text_savingDate: EditText
+    private lateinit var Btn_saving: Button
+    private lateinit var Btn_Close_saving: ImageButton
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_savingsetting)
+
+        initView()
+        setListeners()
+        Btn_Close_saving.setOnClickListener {
+            finish()
+        }
+
+    }
+    private fun initView(){
+        Text_saving=findViewById<EditText>(R.id.TextsavingSalary)
+        Text_savingDate=findViewById<EditText>(R.id.TextsavingDate)
+        Btn_saving=findViewById<Button>(R.id.btnsavingSetting)
+        Btn_Close_saving=findViewById<ImageButton>(R.id.btnclosesavingSetting)
+    }
+
+    private fun setListeners(){
+        //저축 등록 버튼
+        Btn_saving.setOnClickListener {
+            val saving = Text_saving.text.toString().trim()
+            val savingDate = Text_savingDate.text.toString().trim()
+
+            if(saving.isEmpty() || savingDate.isEmpty()){
+                Toast.makeText(this, "모든 항목을 입력하세요", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            //결과 전달
+            val intent = Intent().apply{
+                putExtra("saving",saving)
+                putExtra("savingDate", savingDate)
+            }
+            setResult(RESULT_OK,intent)
+            //finish()
+        }
+    }
+}

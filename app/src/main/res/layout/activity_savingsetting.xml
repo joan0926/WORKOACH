@@ -99,7 +99,7 @@
         app:layout_constraintTop_toBottomOf="@id/savingDate" />
 
     <Button
-        android:id="@+id/btnoutgoingSetting"
+        android:id="@+id/btnsavingSetting"
         android:layout_width="140dp"
         android:layout_height="44dp"
         android:layout_marginStart="172dp"

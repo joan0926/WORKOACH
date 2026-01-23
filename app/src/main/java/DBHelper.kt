@@ -22,7 +22,7 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, "workoach.db",null,1
                 "jobdate TEXT," +
                 "FOREIGN KEY(userid) REFERENCES userTBL(userid))")
 
-        //사용자 지출수입 정보 테이블(id, 사용자id, 지출0/수입1,돈크기)
+        //사용자 금액 정보 테이블(id, 사용자id, 수입0/지출1/저축2, 돈크기)
         db!!.execSQL("CREATE TABLE moneyTBL(" +
                 "moneyid INTEGER PRIMARY KEY AUTOINCREMENT,"+
                 "userid TEXT," +
