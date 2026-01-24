@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 
 class ChangePwActivity : AppCompatActivity(){
@@ -21,6 +22,9 @@ class ChangePwActivity : AppCompatActivity(){
 
         initView()
         setListenners()
+        Btn_changePW.setOnClickListener {
+            showCustomDialog()
+        }
     }
 
     private fun initView(){
@@ -36,17 +40,23 @@ class ChangePwActivity : AppCompatActivity(){
         Btn_changePW.setOnClickListener {
             val text_originPW = Text_originPW.text.toString().trim()
             val newPW = Text_newPW.text.toString().trim()
+        }
+    }
 
-            showCutomDialog()
+    private fun showCustomDialog(){
+        val dialog = Dialog(this)
+
+        val view = layoutInflater.inflate(R.layout.check_change, null)
+        dialog.setContentView(view)
+
+        //변경 취소되면 다이얼로그 창 닫기
+        val btnClose = view.findViewById<ImageButton>(R.id.btn_cancelchange)
+        btnClose?.setOnClickListener {
+            dialog.dismiss()
         }
 
+        //변경 아니요면 비밀번호 변경
 
-    }
-    fun showCutomDialog(){
-        val dialog = Dialog(this)
-        val view = layoutInflater.inflate(R.layout.check_change, null)
-
-        dialog.setContentView(view)
         dialog.show()
     }
 }
