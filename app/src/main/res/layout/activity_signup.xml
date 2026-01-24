@@ -68,10 +68,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="비밀번호"
         android:fontFamily="@font/semi_bold"
-        android:textSize="16dp"
+        android:text="비밀번호"
         android:textColor="@color/Primary800"
+        android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_Id" />
 
@@ -204,6 +204,17 @@
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_Date" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/medium"
+        android:text="보안을 위해 특수문자, 대문자, 숫자를 조합하는걸 추천해요"
+        android:textSize="10dp"
+        app:layout_constraintStart_toEndOf="@+id/text_PasswordTitle"
+        tools:layout_editor_absoluteY="170dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
