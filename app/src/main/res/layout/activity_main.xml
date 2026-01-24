@@ -23,7 +23,7 @@
     <Button
         android:id="@+id/button_login_Enter"
         android:layout_width="156dp"
-        android:layout_height="48dp"
+        android:layout_height="52dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
@@ -41,21 +41,20 @@
     <Button
         android:id="@+id/button_Signup_Enter"
         android:layout_width="156dp"
-        android:layout_height="48dp"
+        android:layout_height="52dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:text="회원가입"
-        app:cornerRadius="20px"
-        android:fontFamily="@font/medium"
-        android:textSize="12dp"
-        android:textColor="@color/Secondary300"
         android:backgroundTint="@color/Primary500"
+        android:fontFamily="@font/medium"
+        android:text="회원가입"
+        android:textColor="@color/Secondary300"
+        android:textSize="12dp"
+        app:cornerRadius="20px"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_login_Enter" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
