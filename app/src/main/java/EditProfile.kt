@@ -1,5 +1,6 @@
 package com.example.workoach
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -49,6 +50,32 @@ class EditProfile : AppCompatActivity() {
             }
             setResult(RESULT_OK,intent)
             finish()
+        }
+
+        //날짜
+        Text_workDate.setOnClickListener {
+            val calendar = java.util.Calendar.getInstance()
+
+            val year = calendar.get(java.util.Calendar.YEAR)
+            val month = calendar.get(java.util.Calendar.MONTH)
+            val day = calendar.get(java.util.Calendar.DAY_OF_MONTH)
+
+            val datePickerDialog = DatePickerDialog(
+                this,
+                { _, selectedYear, selectedMonth, selectedDay ->
+                    // 월은 0부터 시작하니까 +1
+                    val date = "${selectedYear}년 ${selectedMonth + 1}월 ${selectedDay}일"
+
+                    Text_workDate.setText(date)
+                },
+                year,
+                month,
+                day
+
+
+            )
+
+            datePickerDialog.show()
         }
     }
 
