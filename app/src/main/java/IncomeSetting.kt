@@ -50,7 +50,7 @@ class IncomeSetting: AppCompatActivity() {
                 putExtra("incomeDate", incomeDate)
             }
             setResult(RESULT_OK,intent)
-            //finish()
+            finish()
         }
     }
 
