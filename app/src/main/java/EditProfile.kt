@@ -22,9 +22,7 @@ class EditProfile : AppCompatActivity() {
 
         initView()
         setListeners()
-        Btn_Close_editprofile.setOnClickListener {
-            finish()
-        }
+
 
     }
 

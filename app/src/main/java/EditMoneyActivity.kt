@@ -24,9 +24,7 @@ class EditMoneyActivity : AppCompatActivity(){
 
         initView()
         setListeners()
-        Btn_Close.setOnClickListener {
-            finish()
-        }
+
 
     }
 

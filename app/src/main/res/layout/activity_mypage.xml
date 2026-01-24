@@ -1,6 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/Primary100">
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="94dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/bold"
+        android:text="김슈니님"
+        android:textSize="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bg_secondary500"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/Secondary500"
+        android:enabled="false"
+        android:text=""
+        app:cornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
+
+    <Button
+        android:id="@+id/cumulative_balance"
+        android:layout_width="97dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/Primary700"
+        android:enabled="false"
+        android:paddingTop="4px"
+        android:text="누적 모금액"
+        android:textColor="@color/Secondary300"
+        android:textSize="13dp"
+        android:fontFamily="@font/semi_bold"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_secondary500"
+        app:layout_constraintStart_toStartOf="@+id/bg_secondary500"
+        app:layout_constraintTop_toTopOf="@+id/bg_secondary500" />
+
+    <TextView
+        android:id="@+id/balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/semi_bold"
+        android:text="잔액"
+        android:textColor="@color/TextSecondary"
+        android:textSize="16dp"
+        app:layout_constraintStart_toEndOf="@+id/cumulative_balance"
+        app:layout_constraintTop_toTopOf="@+id/bg_secondary500" />
+
+    <Button
+        android:id="@+id/button_editProfile"
+        android:layout_width="156dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/Secondary600"
+        android:fontFamily="@font/medium"
+        android:text="프로필 수정하기"
+        android:textColor="@color/Primary700"
+        android:textSize="12dp"
+        app:cornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bg_secondary500" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="533dp"
+        android:background="@color/TextDisabled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_editProfile" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="설정"
+        android:fontFamily="@font/semi_bold"
+        android:textSize="16dp"
+        android:textColor="@color/Primary700"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+    <Button
+        android:id="@+id/btn_editmoney"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/edittext_outline"
+        android:backgroundTint="@color/Secondary300"
+        android:fontFamily="@font/medium"
+        android:text="월급 수정하기"
+        android:textColor="@color/Primary800"
+        android:textSize="12dp"
+        app:cornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/btn_manageaccount"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/edittext_outline"
+        android:backgroundTint="@color/Secondary300"
+        android:fontFamily="@font/medium"
+        android:text="계정 관리"
+        android:textColor="@color/Primary800"
+        android:textSize="12dp"
+        app:cornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_editmoney" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
