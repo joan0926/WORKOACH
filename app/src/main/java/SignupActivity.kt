@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -23,40 +24,61 @@ class SignupActivity : AppCompatActivity() {
         setContentView(R.layout.activity_signup)
 
         // 🔹 View 연결
-        val btnProfile = findViewById<Button>(R.id.button_Profile)
-        val password = findViewById<EditText>(R.id.text_Password)
-        val passwordConfirm = findViewById<EditText>(R.id.text_PasswordConfirm)
-        val passwordError = findViewById<TextView>(R.id.text_PasswordConfirm_err)
-        val etJobDate = findViewById<EditText>(R.id.text_Date)
+        val etId = findViewById<EditText>(R.id.text_Id)
+        val etPassword = findViewById<EditText>(R.id.text_Password)
+        val etPasswordConfirm = findViewById<EditText>(R.id.text_PasswordConfirm)
+        val etName = findViewById<EditText>(R.id.text_Name)
+        val etDate = findViewById<EditText>(R.id.text_Date)
 
-        // 🔹 기본 상태 (에러 숨김)
+        val btnProfile = findViewById<Button>(R.id.button_Profile)
+        val passwordError = findViewById<TextView>(R.id.text_PasswordConfirm_err)
+
+        // 🔹 초기 상태
         passwordError.visibility = View.GONE
 
         // 🔹 버튼 클릭
         btnProfile.setOnClickListener {
 
-            val pw = password.text.toString()
-            val pwCheck = passwordConfirm.text.toString()
+            val id = etId.text.toString().trim()
+            val pw = etPassword.text.toString().trim()
+            val pwCheck = etPasswordConfirm.text.toString().trim()
+            val name = etName.text.toString().trim()
+            val date = etDate.text.toString().trim()
 
-            if (pw != pwCheck) {
-                // ❌ 비밀번호 불일치
-                passwordConfirm.background =
-                    ContextCompat.getDrawable(this, R.drawable.edittext_outline_error)
-
-                passwordError.visibility = View.VISIBLE
-                passwordConfirm.requestFocus()
-
+            // 1️⃣ 모든 항목 입력 체크
+            if (
+                id.isEmpty() ||
+                pw.isEmpty() ||
+                pwCheck.isEmpty() ||
+                name.isEmpty() ||
+                date.isEmpty()
+            ) {
+                Toast.makeText(
+                    this,
+                    "모든 항목을 다 입력해주세요",
+                    Toast.LENGTH_SHORT
+                ).show()
                 return@setOnClickListener
             }
 
-            // ✅ 비밀번호 일치 → 다음 화면
+            // 2️⃣ 비밀번호 불일치 체크
+            if (pw != pwCheck) {
+                etPasswordConfirm.background =
+                    ContextCompat.getDrawable(this, R.drawable.edittext_outline_error)
+
+                passwordError.visibility = View.VISIBLE
+                etPasswordConfirm.requestFocus()
+                return@setOnClickListener
+            }
+
+            // 3️⃣ 모두 통과 → 다음 화면
             val intent = Intent(this, ProgressActivity::class.java)
             startActivity(intent)
         }
 
-        // 🔹 다시 입력하면 에러 해제
-        passwordConfirm.addTextChangedListener {
-            passwordConfirm.background =
+        // 🔹 재입력 시 에러 해제
+        etPasswordConfirm.addTextChangedListener {
+            etPasswordConfirm.background =
                 ContextCompat.getDrawable(this, R.drawable.edittext_outline)
             passwordError.visibility = View.GONE
         }
@@ -70,10 +92,10 @@ class SignupActivity : AppCompatActivity() {
 
         // 🔹 취직일 힌트
         val year = Calendar.getInstance().get(Calendar.YEAR)
-        etJobDate.hint = "$year.00.00 ▼"
+        etDate.hint = "$year.00.00 ▼"
 
         // 🔹 DatePicker
-        etJobDate.setOnClickListener {
+        etDate.setOnClickListener {
             val calendar = Calendar.getInstance()
 
             val y = calendar.get(Calendar.YEAR)
@@ -83,8 +105,9 @@ class SignupActivity : AppCompatActivity() {
             DatePickerDialog(
                 this,
                 { _, selectedYear, selectedMonth, selectedDay ->
-                    val date = "${selectedYear}년 ${selectedMonth + 1}월 ${selectedDay}일"
-                    etJobDate.setText(date)
+                    val dateText =
+                        "${selectedYear}년 ${selectedMonth + 1}월 ${selectedDay}일"
+                    etDate.setText(dateText)
                 },
                 y, m, d
             ).show()
