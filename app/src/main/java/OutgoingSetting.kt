@@ -16,7 +16,7 @@ class OutgoingSetting : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_outgoingSetting)
+        setContentView(R.layout.activity_outgoingsetting)
 
         initView()
         setListeners()
