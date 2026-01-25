@@ -28,6 +28,7 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, "workoach.db",null,1
                 "userid TEXT," +
                 "state INTEGER," +
                 "money INTEGER,"+
+                "totalmoney INTEGER,"+
                 "FOREIGN KEY(userid) REFERENCES userTBL(userid))")
 
     }

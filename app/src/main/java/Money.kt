@@ -20,6 +20,11 @@ class Money : AppCompatActivity() {
         val editTextDate = findViewById<EditText>(R.id.text_MoneyDate)
         val year = Calendar.getInstance().get(Calendar.YEAR)
         editTextDate.hint = "$year.00.00 ▼"
+        //DB저장변수들
+        val userId = intent.getStringExtra("USER_ID")
+        val workname = findViewById<EditText>(R.id.text_WorkName)
+        val workmoney = findViewById<EditText>(R.id.text_TakeMoney)
+
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -27,5 +32,8 @@ class Money : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        //홈화면으로 넘어가는 코드(넘어가는 거, DB에 저장) 만들어야 함
+
     }
 }
