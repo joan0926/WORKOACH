@@ -70,9 +70,12 @@ class SignupActivity : AppCompatActivity() {
                 etPasswordConfirm.requestFocus()
                 return@setOnClickListener
             }
+            //userTBD에 저장
+            saveUser(id, pw, name,date)
 
             // 3️⃣ 모두 통과 → 다음 화면
             val intent = Intent(this, ProgressActivity::class.java)
+            intent.putExtra("USer_ID", id) //사용자id 넘겨주기
             startActivity(intent)
         }
 
@@ -112,5 +115,19 @@ class SignupActivity : AppCompatActivity() {
                 y, m, d
             ).show()
         }
+    }
+
+    //saveUser정의
+    private fun saveUser(id: String, pw: String, name:String, date:String){
+        val dbHelper = DBHelper(this)
+        val db= dbHelper.writableDatabase
+
+        val sql="""
+            INSERT INTO userTBL(userid, userpw, username, startdate)
+            VALUES(?,?,?,?)
+        """.trimIndent()
+
+        db.execSQL(sql, arrayOf(id,pw,name,date))
+        db.close()
     }
 }
