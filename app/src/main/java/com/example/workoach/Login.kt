@@ -16,7 +16,7 @@ class Login : AppCompatActivity() {
         val btnlogin = findViewById<Button>(R.id.login)
 
         btnlogin.setOnClickListener {
-            val intent = Intent(this, ProgressActivity::class.java)   //홈대신프로그래스에연결해둠
+            val intent = Intent(this, HomeActivity::class.java)   //홈대신프로그래스에연결해둠
             startActivity(intent)}
 
 

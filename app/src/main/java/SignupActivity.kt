@@ -74,7 +74,7 @@ class SignupActivity : AppCompatActivity() {
             saveUser(id, pw, name,date)
 
             // 3️⃣ 모두 통과 → 다음 화면
-            val intent = Intent(this, ProgressActivity::class.java)
+            val intent = Intent(this, Money::class.java)
             intent.putExtra("USer_ID", id) //사용자id 넘겨주기
             startActivity(intent)
         }

@@ -15,7 +15,7 @@
             android:name=".Login"
             android:exported="false" />
         <activity
-            android:name=".ProgressActivity"
+            android:name=".HomeActivity"
             android:exported="false" />
         <activity
             android:name=".Calinder"
