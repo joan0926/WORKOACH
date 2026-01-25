@@ -17,11 +17,13 @@ class EditMoneyActivity : AppCompatActivity(){
     private lateinit var Text_SalaryDate: EditText
     private lateinit var Btn_Edit: Button
     private lateinit var Btn_Close: ImageButton
+    private lateinit var userID : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editmoney)
 
+        userID = intent.getStringExtra("USER_ID") ?: return
         initView()
         setListeners()
 
@@ -75,22 +77,33 @@ class EditMoneyActivity : AppCompatActivity(){
                 return@setOnClickListener
             }
 
-            //결과 전달
-            val intent = Intent().apply {
-                putExtra("companyname", companyname) //string
-                putExtra("textsalary", textsalary) //Long
-                putExtra("datesalary", datesalary) //String(yyyy.mm.dd)
-
-            }
-            setResult(RESULT_OK, intent)
-
+            updateJobInfo(userID, companyname, textsalary, datesalary)
             //액티비티 종료
             finish()
+
         }
 
     }
+    private fun updateJobInfo(
+        userid: String,
+        companyname: String,
+        textsalary: String,
+        datesalary: String
+    ) {
+        val dbHelper = DBHelper(this)
+        val db = dbHelper.writableDatabase
 
+        val sql = """
+                UPDATE jobTBL
+                SET jobname = ?,
+                    jobsalary =?,
+                    jobdate =?
+                WHERE userid = ?
+            """.trimIndent()
 
+        db.execSQL(sql, arrayOf(companyname, textsalary, datesalary, userid))
 
+        db.close()
+    }
 
 }
