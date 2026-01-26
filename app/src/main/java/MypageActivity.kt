@@ -12,9 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 class MypageActivity : AppCompatActivity() {
 
 
-    private lateinit var Btn_editprofile: Button
-    private lateinit var Btn_editmoney: Button
-    private lateinit var Btn_accountmanagement: Button
+    private lateinit var Btn_editprofile: Button //프로필 수정하기
+    private lateinit var Btn_editmoney: Button //월급 수정하기
+    private lateinit var Btn_accountmanagement: Button //계정관리
     private lateinit var userid: String
 
 
@@ -39,8 +39,8 @@ class MypageActivity : AppCompatActivity() {
 
     private fun initView() {
         val balance = findViewById<TextView>(R.id.balance)
-        val totalMoney = loadMoneyData(userid)
-        balance.text = totalMoney.toString()
+        val totalSaving = calSavingnSalaryPercent(userid,20)
+        balance.text = totalSaving.toString()
     }
 
     fun showCustomDialog(@LayoutRes layoutResId: Int, closeBtnId: Int) {
@@ -57,28 +57,43 @@ class MypageActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    fun loadMoneyData(userid: String): Int {
+    fun calSavingnSalaryPercent(userid: String, percent: Int): Int {
         val dbHelper = DBHelper(this)
         val db = dbHelper.readableDatabase
 
-        val sql = """
-                SELECT totalmoney
-                FROM moneyTBL
-                WHERE userid = ?
-                LIMIT 1
-            """.trimIndent()
+        val sql="""
+            SELECT
+                IFNULL(
+                    (SELECT SUM(money)
+                    FROM moneyTBL
+                    WHERE userid = ?
+                        AND state =2),0
+                )
+                +
+                IFNULL(
+                    (SELECT jobsalary * ?/100
+                    FROM jobTBL
+                    WHERE userid = ?
+                    LIMIT 1),0
+                )AS resultMonney
+        """.trimIndent()
 
-        val cursor = db.rawQuery(sql, arrayOf(userid))
-        var totalmoney = 0
-        if (cursor.moveToFirst()) {
-            totalmoney = cursor.getInt(
-                cursor.getColumnIndexOrThrow("totalmoney")
+        val cursor = db.rawQuery(
+            sql, arrayOf(userid, percent.toString(),userid)
+        )
+
+        var result = 0
+        if(cursor.moveToFirst()){
+            result = cursor.getInt(
+                cursor.getColumnIndexOrThrow("resultMoney")
             )
         }
         cursor.close()
         db.close()
 
-        return totalmoney
+        return result
+
     }
 
-}
+
+    }

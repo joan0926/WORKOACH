@@ -12,11 +12,24 @@ class CheckLogout: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.check_logout)
 
+
+
         Btn_Yeslogout=findViewById<Button>(R.id.btn_truelogout)
+
+
         //메인화면으로 넘어가기
-        //Btn_Yeslogout.setOnClickListener {
-        //    val intent = Intent(this, MainActivity)
-        //    startActivity(intent)
-        //}
+        Btn_Yeslogout.setOnClickListener {
+
+            //로그인 상태 정보만 제거
+            getSharedPreferences("login", MODE_PRIVATE)
+                .edit()
+                .clear()
+                .apply()
+
+            //로그인화면으로 넘어가기
+            val intent=Intent(this, Login::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
     }
 }

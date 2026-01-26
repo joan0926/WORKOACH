@@ -18,17 +18,16 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, "workoach.db",null,1
         db!!.execSQL("CREATE TABLE jobTBL(" +
                 "userid TEXT PRIMARY KEY," +
                 "jobname TEXT," +
-                "jobsalary TEXT," +
+                "jobsalary INTEGER," +
                 "jobdate TEXT," +
                 "FOREIGN KEY(userid) REFERENCES userTBL(userid))")
 
-        //사용자 금액 정보 테이블(id, 사용자id, 수입0/지출1/저축2, 돈크기, 잔액)
+        //사용자 금액 정보 테이블(id, 사용자id, 수입0/지출1/저축2, 돈크기)
         db!!.execSQL("CREATE TABLE moneyTBL(" +
                 "moneyid INTEGER PRIMARY KEY AUTOINCREMENT,"+
                 "userid TEXT," +
                 "state INTEGER," +
                 "money INTEGER,"+
-                "totalmoney INTEGER,"+
                 "FOREIGN KEY(userid) REFERENCES userTBL(userid))")
 
     }

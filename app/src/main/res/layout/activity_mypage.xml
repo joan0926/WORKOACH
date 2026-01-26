@@ -58,7 +58,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/semi_bold"
-        android:text="잔액"
+        android:text="저축액 + 월급 n%"
         android:textColor="@color/TextSecondary"
         android:textSize="16dp"
         app:layout_constraintStart_toEndOf="@+id/cumulative_balance"
