@@ -6,6 +6,9 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
 
 class HomeActivity : AppCompatActivity() {
 
@@ -79,5 +82,30 @@ class HomeActivity : AppCompatActivity() {
         val view = layoutInflater.inflate(R.layout.activity_editmoney, null)
         dialog.setContentView(view)
         dialog.show()
+    }
+
+    private fun setupBottomNav() {
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav)
+
+        // 현재 탭 표시
+        bottomNav.selectedItemId = R.id.tab_home
+
+        bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.tab_home -> true // 자기 자신
+
+                R.id.tab_coach -> {
+                    startActivity(Intent(this, coach::class.java))
+                    false
+                }
+
+                R.id.tab_mypage -> {
+                    startActivity(Intent(this, MypageActivity::class.java))
+                    false
+                }
+
+                else -> false
+            }
+        }
     }
 }

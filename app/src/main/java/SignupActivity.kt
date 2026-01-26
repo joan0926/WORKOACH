@@ -73,10 +73,14 @@ class SignupActivity : AppCompatActivity() {
             //userTBL에 저장
             saveUser(id, pw, name,date)
 
-            // 3️⃣ 모두 통과 → 다음 화면
-            val intent = Intent(this, Money::class.java)
-            intent.putExtra("USer_ID", id) //사용자id 넘겨주기
+            // 3️⃣ 모두 통과 → 로그인 화면으로 이동
+            Toast.makeText(this, "회원가입이 완료되었습니다. 로그인해주세요.", Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, Login::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
+            finish()
+
         }
 
         // 🔹 재입력 시 에러 해제
