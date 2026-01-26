@@ -25,7 +25,7 @@ class BottomNavActivity : AppCompatActivity() {
                 }
 
                 R.id.tab_coach -> {
-                    startActivity(Intent(this, coach::class.java))
+                    startActivity(Intent(this, CoachActivity::class.java))
                     true
                 }
 
