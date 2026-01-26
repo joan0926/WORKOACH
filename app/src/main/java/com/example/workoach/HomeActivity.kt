@@ -7,6 +7,11 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
+data class MoneySummary(
+    val totalIncome: Int,
+    val totalSpend: Int
+)
+
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var userID: String
@@ -56,6 +61,12 @@ class HomeActivity : AppCompatActivity() {
         // ===============================
         */
 
+        //통액, 소비금액 변수에 집어넣기
+        /*val summary = getMoneySummary(userID)
+        val totalmoney = summary.totalIncome
+        val usingmoney = summary.totalSpend*/
+
+
         // ProgressBar
         moneyBar.max = totalmoney
         moneyBar.progress = usingmoney
@@ -80,4 +91,42 @@ class HomeActivity : AppCompatActivity() {
         dialog.setContentView(view)
         dialog.show()
     }
+
+    //해인:잔액 계산 코드
+    /*private fun getMoneySummary(userID: String): MoneySummary{
+        val db = DBHelper(this).readableDatabase
+
+        val incomeCursor = db.rawQuery(
+            """
+                SELECT IFNULL(SUM(money),0)
+                FROM moneyTBL
+                WHERE userid =? AND state = 0
+            """.trimIndent(),
+            arrayOf(userID)
+        )
+        val totalIncome = if (incomeCursor.moveToFirst()){
+            incomeCursor.getInt(0)
+            }else 0
+            incomeCursor.close()
+
+        val spendCursor = db.rawQuery(
+            """
+                SELECT IFNULL(SUM(money),0)
+                FROM moneyTBL
+                WHERE userid =? AND state IN (1,2)
+            """.trimIndent(),
+            arrayOf(userID)
+        )
+        val totalSpend = if(spendCursor.moveToFirst()){
+            spendCursor.getInt(0)
+            }else 0
+            spendCursor.close()
+            db.close()
+
+        return MoneySummary(
+            totalIncome = totalIncome,
+            totalSpend = totalSpend
+        )
+    }*/
+
 }

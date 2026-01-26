@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 
+
 class coach : AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -14,33 +16,37 @@ class coach : AppCompatActivity() {
 
         val userId = intent.getStringExtra("USER_ID") ?: return
 
-        // DB에서 값 불러오기
-        val dbHelper = DBHelper(this)
-        val db = dbHelper.readableDatabase
 
-        val sql = """
-            SELECT totalmoney, usingmoney
-            FROM moneyTBL
-            WHERE userid = ?
-            LIMIT 1
-        """.trimIndent()
-
-        val cursor = db.rawQuery(sql, arrayOf(userId))
-
-        if (cursor.moveToFirst()) {
-
-            val totalmoney =
-                cursor.getInt(cursor.getColumnIndexOrThrow("totalmoney"))
-
-            val usingmoney =
-                cursor.getInt(cursor.getColumnIndexOrThrow("usingmoney"))
+        val currentMoney = getSavingInfo(userId)
+        val targetMoney = 2_000_000
 
             // ProgressBar 적용
-            moneyBar.max = totalmoney
-            moneyBar.progress = usingmoney
-        }
+            moneyBar.max = targetMoney //목표금액
+            moneyBar.progress = currentMoney  //현재 모은 금액(저금만 일단 계산함)
 
-        cursor.close()
+    }
+
+    private fun getSavingInfo(userID: String): Int{
+        // DB에서 값 불러오기
+        val db = DBHelper(this).readableDatabase
+        //저축값 계산
+        val currentCursor = db.rawQuery(
+            """
+                SELECT IFNULL(SUM(money),0)
+                FROM moneyTBL
+                WHERE userid = ? AND state = 2
+            """.trimIndent(),
+            arrayOf(userID)
+        )
+        val currentMoney = if(currentCursor.moveToFirst()){
+            currentCursor.getInt(0)
+        }else 0
+
+        currentCursor.close()
         db.close()
+
+        return currentMoney
+
+
     }
 }
