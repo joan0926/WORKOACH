@@ -13,10 +13,13 @@ class SavingSetting : AppCompatActivity() {
     private lateinit var Text_savingDate: EditText
     private lateinit var Btn_saving: Button
     private lateinit var Btn_Close_saving: ImageButton
+    private lateinit var userid:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_savingsetting)
+
+        userid = intent.getStringExtra("USER_ID") ?:return
 
         initView()
         setListeners()
@@ -43,13 +46,25 @@ class SavingSetting : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            //결과 전달
-            val intent = Intent().apply{
-                putExtra("saving",saving)
-                putExtra("savingDate", savingDate)
-            }
-            setResult(RESULT_OK,intent)
-            //finish()
+            //moneyTBL에 추가
+            insertSaving(userid, saving, savingDate)
+            finish()
         }
+    }
+
+    private fun insertSaving(userid: String, saving:String, savingDate: String){
+        val money = saving.toIntOrNull() ?: return
+        val state = 2
+
+        val db= DBHelper(this).writableDatabase
+
+        val sql = """
+            INSERT INTO moneyTBL (userid, state, money, date)
+            VALUES (? , ?, ?, ?)
+        """.trimIndent()
+
+        db.execSQL(sql, arrayOf(userid, state, money, savingDate))
+        db.close()
+
     }
 }

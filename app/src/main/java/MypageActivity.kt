@@ -12,9 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 class MypageActivity : AppCompatActivity() {
 
 
-    private lateinit var Btn_editprofile: Button //프로필 수정하기
-    private lateinit var Btn_editmoney: Button //월급 수정하기
-    private lateinit var Btn_accountmanagement: Button //계정관리
+    private lateinit var Btn_editprofile: Button
+    private lateinit var Btn_editmoney: Button
+    private lateinit var Btn_accountmanagement: Button
     private lateinit var userid: String
 
 
@@ -25,12 +25,15 @@ class MypageActivity : AppCompatActivity() {
         val userid = intent.getStringExtra("USER_ID") ?: return
 
         initView()
+        //프로필 수정
         Btn_editprofile.setOnClickListener {
             showCustomDialog(R.layout.activity_editprofile, R.id.btnclose_editprofile)
         }
+        //월급 수정
         Btn_editmoney.setOnClickListener {
             showCustomDialog(R.layout.activity_editmoney, R.id.btncloseeditmoney)
         }
+        //계정 관리
         Btn_accountmanagement.setOnClickListener {
             showCustomDialog(R.layout.activity_accountmanagement, R.id.btnclose_accountmanage)
         }

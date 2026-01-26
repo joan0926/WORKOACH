@@ -13,10 +13,13 @@ class OutgoingSetting : AppCompatActivity() {
     private lateinit var Text_outgoingDate: EditText
     private lateinit var Btn_outgoing: Button
     private lateinit var Btn_Close_outgoing: ImageButton
+    private lateinit var userid:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_outgoingsetting)
+
+        userid = intent.getStringExtra("USER_ID")?:return
 
         initView()
         setListeners()
@@ -43,13 +46,25 @@ class OutgoingSetting : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            //결과 전달
-            val intent = Intent().apply{
-                putExtra("outgoing",outgoing)
-                putExtra("outgoingDate", outgoingDate)
-            }
-            setResult(RESULT_OK,intent)
-            //finish()
+            //DB에 값 저장
+            insertOutgoingMoney(userid, outgoing, outgoingDate)
+            finish()
         }
+    }
+
+    private fun insertOutgoingMoney(userid: String, outgoing:String, outgoingDate: String){
+        val money = outgoing.toIntOrNull() ?: return
+        val state = 1
+
+        val db= DBHelper(this).writableDatabase
+
+        val sql = """
+            INSERT INTO moneyTBL (userid, state, money, date)
+            VALUES (? , ?, ?, ?)
+        """.trimIndent()
+
+        db.execSQL(sql, arrayOf(userid, state, money, outgoingDate))
+        db.close()
+
     }
 }

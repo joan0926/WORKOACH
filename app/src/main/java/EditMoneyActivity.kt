@@ -95,7 +95,6 @@ class EditMoneyActivity : AppCompatActivity(){
             val datePickerDialog = DatePickerDialog(
                 this,
                 { _, selectedYear, selectedMonth, selectedDay ->
-                    // 월은 0부터 시작하니까 +1
                     val date = "${selectedYear}년 ${selectedMonth + 1}월 ${selectedDay}일"
 
                     Text_SalaryDate.setText(date)

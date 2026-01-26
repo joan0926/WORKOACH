@@ -6,6 +6,11 @@ import android.database.sqlite.SQLiteOpenHelper
 import java.sql.SQLXML
 
 class DBHelper(context: Context): SQLiteOpenHelper(context, "workoach.db",null,1) {
+    override fun onConfigure(db: SQLiteDatabase) {
+        super.onConfigure(db)
+        db.setForeignKeyConstraintsEnabled(true)
+    }
+
     override fun onCreate(db: SQLiteDatabase?) {
         //사용자 정보 테이블
         db!!.execSQL("CREATE TABLE userTBL(" +
@@ -28,6 +33,7 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, "workoach.db",null,1
                 "userid TEXT," +
                 "state INTEGER," +
                 "money INTEGER,"+
+                "date TEXT,"+
                 "FOREIGN KEY(userid) REFERENCES userTBL(userid))")
 
     }

@@ -14,10 +14,13 @@ class IncomeSetting: AppCompatActivity() {
     private lateinit var Text_incomeDate: EditText
     private lateinit var Btn_income: Button
     private lateinit var Btn_Close_income: ImageButton
+    private lateinit var userid:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_incomsetting)
+
+        userid = intent.getStringExtra("USER_ID") ?:return
 
         initView()
         setListeners()
@@ -45,13 +48,25 @@ class IncomeSetting: AppCompatActivity() {
             }
 
             //결과 전달
-            val intent = Intent().apply{
-                putExtra("income",income)
-                putExtra("incomeDate", incomeDate)
-            }
-            setResult(RESULT_OK,intent)
+            insertIncome(userid, income, incomeDate)
             finish()
         }
+    }
+
+    private fun insertIncome(userid: String, income:String, incomeDate: String){
+        val money = income.toIntOrNull() ?: return
+        val state = 0
+
+        val db= DBHelper(this).writableDatabase
+
+        val sql = """
+            INSERT INTO moneyTBL (userid, state, money, date)
+            VALUES (? , ?, ?, ?)
+        """.trimIndent()
+
+        db.execSQL(sql, arrayOf(userid, state, money, incomeDate))
+        db.close()
+
     }
 
 }
