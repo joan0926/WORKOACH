@@ -70,7 +70,7 @@ class SignupActivity : AppCompatActivity() {
                 etPasswordConfirm.requestFocus()
                 return@setOnClickListener
             }
-            //userTBD에 저장
+            //userTBL에 저장
             saveUser(id, pw, name,date)
 
             // 3️⃣ 모두 통과 → 다음 화면
