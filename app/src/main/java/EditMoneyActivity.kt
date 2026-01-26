@@ -24,8 +24,10 @@ class EditMoneyActivity : AppCompatActivity(){
         setContentView(R.layout.activity_editmoney)
 
         userID = intent.getStringExtra("USER_ID") ?: return
+
         initView()
         setListeners()
+        setupDatePicker()
 
 
     }
@@ -39,30 +41,6 @@ class EditMoneyActivity : AppCompatActivity(){
     }
 
     private fun setListeners() {
-        Text_SalaryDate.setOnClickListener {
-            val calendar = java.util.Calendar.getInstance()
-
-            val year = calendar.get(java.util.Calendar.YEAR)
-            val month = calendar.get(java.util.Calendar.MONTH)
-            val day = calendar.get(java.util.Calendar.DAY_OF_MONTH)
-
-            val datePickerDialog = DatePickerDialog(
-                this,
-                { _, selectedYear, selectedMonth, selectedDay ->
-                    // 월은 0부터 시작하니까 +1
-                    val date = "${selectedYear}년 ${selectedMonth + 1}월 ${selectedDay}일"
-
-                    Text_SalaryDate.setText(date)
-                },
-                year,
-                month,
-                day
-
-
-            )
-
-            datePickerDialog.show()
-        }
 
 
         //월급 수정 버튼
@@ -104,6 +82,31 @@ class EditMoneyActivity : AppCompatActivity(){
         db.execSQL(sql, arrayOf(companyname, textsalary, datesalary, userid))
 
         db.close()
+    }
+
+    private fun setupDatePicker(){
+        Text_SalaryDate.setOnClickListener {
+            val calendar = java.util.Calendar.getInstance()
+
+            val year = calendar.get(java.util.Calendar.YEAR)
+            val month = calendar.get(java.util.Calendar.MONTH)
+            val day = calendar.get(java.util.Calendar.DAY_OF_MONTH)
+
+            val datePickerDialog = DatePickerDialog(
+                this,
+                { _, selectedYear, selectedMonth, selectedDay ->
+                    // 월은 0부터 시작하니까 +1
+                    val date = "${selectedYear}년 ${selectedMonth + 1}월 ${selectedDay}일"
+
+                    Text_SalaryDate.setText(date)
+                },
+                year,
+                month,
+                day
+            )
+
+            datePickerDialog.show()
+        }
     }
 
 }

@@ -15,13 +15,23 @@ class EditProfile : AppCompatActivity() {
     private lateinit var Text_workDate: EditText
     private lateinit var Btn_editprofile: Button
     private lateinit var Btn_Close_editprofile: ImageButton
+    private lateinit var userID : String
+    //DB용 변수 선언
+    private lateinit var username: String
+    private lateinit var workDate: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editprofile)
 
+        userID = intent.getStringExtra("USER_ID") ?:return
+
         initView()
         setListeners()
+        setupDatePicker()
+
+
+
 
 
     }
@@ -31,26 +41,60 @@ class EditProfile : AppCompatActivity() {
         Text_workDate=findViewById<EditText>(R.id.TextemployDate)
         Btn_editprofile=findViewById<Button>(R.id.btneditprofile)
         Btn_Close_editprofile=findViewById<ImageButton>(R.id.btnclose_editprofile)
+
+        //날짜
+
     }
     private fun setListeners(){
         Btn_editprofile.setOnClickListener {
-            val username = Text_username.text.toString().trim()
-            val workDate = Text_workDate.text.toString().trim()
+            username = Text_username.text.toString().trim()
+            workDate = Text_workDate.text.toString().trim()
+
 
             if(username.isEmpty() || workDate.isEmpty()){
                 Toast.makeText(this, "모든 항목을 입력하세요", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            val intent = Intent().apply{
-                putExtra("username",username)
-                putExtra("workDate", workDate)
-            }
-            setResult(RESULT_OK,intent)
+            updateUserAndJob(userID, username, workDate)
+            finish()
+        }
+        Btn_Close_editprofile.setOnClickListener {
             finish()
         }
 
-        //날짜
+        }
+    private fun updateUserAndJob(
+        userid: String, username: String, workDate:String) {
+        val db = DBHelper(this).writableDatabase
+
+        db.beginTransaction()
+        try {
+            db.execSQL(
+                """
+                    UPDATE userTBL
+                    SET username = ?
+                    WHERE userid =?
+                """.trimIndent(),
+                arrayOf(username, userid)
+            )
+            db.execSQL(
+                """
+                    UPDATE jobTBL
+                    SET jobdate=?
+                    WHERE userid = ?
+                """.trimIndent(),
+                arrayOf(workDate, userid)
+            )
+            db.setTransactionSuccessful()
+
+        }finally{
+            db.endTransaction()
+            db.close()
+        }
+    }
+
+    private fun setupDatePicker(){
         Text_workDate.setOnClickListener {
             val calendar = java.util.Calendar.getInstance()
 
@@ -76,5 +120,5 @@ class EditProfile : AppCompatActivity() {
             datePickerDialog.show()
         }
     }
+ }
 
-}
