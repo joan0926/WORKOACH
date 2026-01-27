@@ -35,12 +35,15 @@ class Login : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // 지금은 바로 통과 (다음 단계에서 DB검사)
-            val intent = Intent(this, HomeActivity::class.java)
-            intent.putExtra("USER_ID", userID)
-            startActivity(intent)
+            if (checkLogin(userID, userPW)){
+                val intent = Intent(this, HomeActivity::class.java)
+                intent.putExtra("USER_ID", userID)
+                startActivity(intent)
 
-            finish()
+                finish()
+            }else{
+                Toast.makeText(this, "아이디 또는 비밀번호가 틀립니다.", Toast.LENGTH_SHORT).show()
+            }
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -48,5 +51,26 @@ class Login : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+
+    }
+    private fun checkLogin(userid: String, userpw: String): Boolean{
+        val db= DBHelper(this).readableDatabase
+
+        val cursor = db.rawQuery(
+            """
+                SELECT 1
+                FROM userTBL
+                WHERE userid = ? AND userpw=?
+                LIMIT 1
+            """.trimIndent(),
+            arrayOf(userid, userpw)
+        )
+        val exists=cursor.moveToFirst()
+
+        cursor.close()
+        db.close()
+
+        return exists
     }
 }

@@ -19,16 +19,18 @@ class EditMoneyActivity : AppCompatActivity(){
     private lateinit var Btn_Close: ImageButton
     private lateinit var userID : String
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editmoney)
 
         userID = intent.getStringExtra("USER_ID") ?: return
 
+        setFinishOnTouchOutside(false)
         initView()
         setListeners()
         setupDatePicker()
-
 
     }
 
@@ -58,7 +60,9 @@ class EditMoneyActivity : AppCompatActivity(){
             updateJobInfo(userID, companyname, textsalary, datesalary)
             //액티비티 종료
             finish()
-
+        }
+        Btn_Close.setOnClickListener {
+            finish()
         }
 
     }

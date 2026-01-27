@@ -22,14 +22,14 @@ class HomeActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.button)
 
         // ===============================
-        // 🔥 실험용 직접 값
+        // 🔥 실험용 직접 값(삭제 예정)
         val totalmoney = 3000000
         val usingmoney = 1200000
         // ===============================
 
         /*
         // ===============================
-        // DB 읽기 (나중에 사용)
+        // DB 읽기 (나중에 사용)(삭제예정)
         val dbHelper = DBHelper(this)
         val db = dbHelper.readableDatabase
 
