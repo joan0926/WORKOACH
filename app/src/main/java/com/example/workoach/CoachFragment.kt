@@ -1,9 +1,13 @@
 package com.example.workcoach
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import com.example.workoach.DBHelper
@@ -22,6 +26,7 @@ class CoachFragment : Fragment() {
         val view = inflater.inflate(R.layout.activity_coach, container, false)
 
         val moneyBar = view.findViewById<ProgressBar>(R.id.moneyBar)
+        val cardContainer = view.findViewById<LinearLayout>(R.id.studyCardContainer)
 
         userid = requireActivity().intent.getStringExtra("USER_ID") ?: ""
 
@@ -32,6 +37,25 @@ class CoachFragment : Fragment() {
         // ProgressBar 적용
         moneyBar.max = targetMoney //목표금액
         moneyBar.progress = currentMoney  //현재 모은 금액(저금만 일단 계산함)
+
+        // 카드 추가
+        val cardView = inflater.inflate(
+            R.layout.item_study_card,
+            cardContainer,
+            false
+        )
+
+        cardContainer.addView(cardView)
+
+        val linkButton = cardView.findViewById<Button>(R.id.btnLink)
+
+        linkButton.setOnClickListener {
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://spot.wooribank.com/pot/Dream?withyou=CQCCS0095&__STEP=1")
+            )
+            startActivity(intent)
+        }
 
         return view
     }
@@ -56,11 +80,6 @@ class CoachFragment : Fragment() {
         db.close()
 
         return currentMoney
-
-
     }
-
-
-
 
 }
