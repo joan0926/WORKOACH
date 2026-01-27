@@ -15,9 +15,8 @@ import android.widget.TextView
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import com.example.workoach.DBHelper
-import com.example.workoach.IncomeSetting
 import com.example.workoach.IncomeSettingDialog
-import com.example.workoach.OutgoingSetting
+import com.example.workoach.OutgoingSettingDialog
 import com.example.workoach.R
 import com.example.workoach.com.example.workoach.EduCard
 
@@ -33,6 +32,8 @@ class HomeFragment : Fragment() {
 
     private lateinit var userid: String
     private lateinit var cardContainer: LinearLayout
+    private lateinit var Btn_incomeSetting: Button
+    private lateinit var Btn_outgoingSetting: Button
 
     private val allCards = listOf(
         EduCard(
@@ -60,16 +61,14 @@ class HomeFragment : Fragment() {
         val moneyBar = view.findViewById<ProgressBar>(R.id.moneyBar)
         val tvPercent = view.findViewById<TextView>(R.id.tvPercent)
         //val button = view.findViewById<Button>(R.id.button)
+        var Btn_incomeSetting = view.findViewById<Button>(R.id.btnIncome)
+        var Btn_outgoingSetting = view.findViewById<Button>(R.id.btnOutgoing)
 
 
         val summary = getMoneySummary(userid)
         val totalmoney = summary.totalIncome
         val usingmoney = summary.totalSpend
 
-
-        // 테스트용 값
-        //val totalmoney = 3_000_000
-        //val usingmoney = 1_200_000
 
         moneyBar.max = totalmoney
         moneyBar.progress = usingmoney
@@ -78,29 +77,28 @@ class HomeFragment : Fragment() {
         tvPercent.text = "$percent%"
 
         // 월급 수정 버튼 클릭 → 다이얼로그
-        /*button.setOnClickListener {
-            val dialog = Dialog(requireContext())
-            dialog.setContentView(R.layout.activity_editmoney)
+//        button.setOnClickListener {
+//            val dialog = Dialog(requireContext())
+//            dialog.setContentView(R.layout.activity_editmoney)
+//
+//            dialog.setCancelable(false) // 바깥 터치로 닫히게 할지 (원하면 true)
+//
+//            dialog.show()
+//        }
 
-            dialog.setCancelable(false) // 바깥 터치로 닫히게 할지 (원하면 true)
 
-            dialog.show()
-        }*/
-
-        val Btn_incomeSetting = view.findViewById<Button>(R.id.btnIncome)
 
         // ✅ 수입 등록 버튼
         Btn_incomeSetting.setOnClickListener {
-            val dialog = IncomeSettingDialog.newInstance(userid)
-            dialog.show(parentFragmentManager, "IncomeSetting_Dialog")
+            val dialog_income = IncomeSettingDialog.newInstance(userid)
+            dialog_income.show(parentFragmentManager, "IncomeSetting_Dialog")
         }
 
         // ✅ 지출 등록 버튼
-        /*btnOutgoing.setOnClickListener {
-            val intent = Intent(requireContext(), OutgoingSetting::class.java)
-            intent.putExtra("USER_ID", userid)
-            startActivity(intent)
-        }*/
+        Btn_outgoingSetting.setOnClickListener {
+            val dialog_outgoing = OutgoingSettingDialog.newInstance(userid)
+            dialog_outgoing.show(parentFragmentManager, "OutgoingSettingDialog")
+        }
 
         return view
     }
@@ -143,39 +141,5 @@ class HomeFragment : Fragment() {
             totalIncome = totalIncome,
             totalSpend = totalSpend
         )
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        cardContainer = view.findViewById(R.id.cardContainer)
-
-        showRandomCards()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        // 페이지 재방문 시 카드 교체
-        showRandomCards()
-    }
-
-    private fun showRandomCards() {
-        cardContainer.removeAllViews()
-
-        val randomCards = allCards.shuffled().take(3)
-
-        randomCards.forEach { card ->
-            val cardView = LayoutInflater.from(requireContext())
-                .inflate(R.layout.item_edu_card, cardContainer, false)
-
-            cardView.findViewById<ImageView>(R.id.edu_icon)
-                .setImageResource(card.iconRes)
-            cardView.findViewById<TextView>(R.id.edu_title)
-                .text = card.title
-            cardView.findViewById<TextView>(R.id.edu_desc)
-                .text = card.description
-
-            cardContainer.addView(cardView)
-        }
     }
 }
