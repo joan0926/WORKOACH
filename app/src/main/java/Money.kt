@@ -23,11 +23,11 @@ class Money : AppCompatActivity() {
         val btnMoney = findViewById<Button>(R.id.button_Money)
 
         val userId = intent.getStringExtra("USER_ID")
-
         val year = Calendar.getInstance().get(Calendar.YEAR)
         editTextDate.hint = "$year.00.00 ▼"
 
         btnMoney.setOnClickListener {
+            // 월급 입력 후 HomeFragment 포함 BottomNavActivity 이동
             val intent = Intent(this, BottomNavActivity::class.java)
             intent.putExtra("USER_ID", userId)
             startActivity(intent)

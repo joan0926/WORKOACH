@@ -15,6 +15,7 @@ class BottomNavActivity : AppCompatActivity() {
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav)
 
+        // 첫 화면 HomeFragment
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, HomeFragment())
             .commit()

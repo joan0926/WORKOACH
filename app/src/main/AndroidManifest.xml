@@ -34,8 +34,8 @@
         <activity android:name=".SignupActivity"/>
         <activity android:name=".Calinder"/>
 
-        <activity android:name=".IncomeSetting" />
-        <activity android:name=".OutgoingSetting" />
+        <activity android:name=".IncomeSettingDialog" />
+        <activity android:name=".OutgoingSettingDialog" />
 
     </application>
 
