@@ -142,4 +142,39 @@ class HomeFragment : Fragment() {
             totalSpend = totalSpend
         )
     }
+
+    // 한줄금융 카드
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        cardContainer = view.findViewById(R.id.cardContainer)
+
+        showRandomCards()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // 페이지 재방문 시 카드 교체
+        showRandomCards()
+    }
+
+    private fun showRandomCards() {
+        cardContainer.removeAllViews()
+
+        val randomCards = allCards.shuffled().take(3)
+
+        randomCards.forEach { card ->
+            val cardView = LayoutInflater.from(requireContext())
+                .inflate(R.layout.item_edu_card, cardContainer, false)
+
+            cardView.findViewById<ImageView>(R.id.edu_icon)
+                .setImageResource(card.iconRes)
+            cardView.findViewById<TextView>(R.id.edu_title)
+                .text = card.title
+            cardView.findViewById<TextView>(R.id.edu_desc)
+                .text = card.description
+
+            cardContainer.addView(cardView)
+        }
+    }
 }
