@@ -16,6 +16,7 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import com.example.workoach.DBHelper
 import com.example.workoach.IncomeSetting
+import com.example.workoach.IncomeSettingDialog
 import com.example.workoach.OutgoingSetting
 import com.example.workoach.R
 import com.example.workoach.com.example.workoach.EduCard
@@ -77,24 +78,25 @@ class HomeFragment : Fragment() {
         tvPercent.text = "$percent%"
 
         // 월급 수정 버튼 클릭 → 다이얼로그
-        button.setOnClickListener {
+        /*button.setOnClickListener {
             val dialog = Dialog(requireContext())
             dialog.setContentView(R.layout.activity_editmoney)
 
             dialog.setCancelable(false) // 바깥 터치로 닫히게 할지 (원하면 true)
 
             dialog.show()
-        }
+        }*/
+
+        val Btn_incomeSetting = view.findViewById<Button>(R.id.btnIncome)
 
         // ✅ 수입 등록 버튼
-        /*btnIncome.setOnClickListener {
-            val intent = Intent(requireContext(), IncomeSetting::class.java)
-            intent.putExtra("USER_ID", userid)
-            startActivity(intent)
+        Btn_incomeSetting.setOnClickListener {
+            val dialog = IncomeSettingDialog.newInstance(userid)
+            dialog.show(parentFragmentManager, "IncomeSetting_Dialog")
         }
 
         // ✅ 지출 등록 버튼
-        btnOutgoing.setOnClickListener {
+        /*btnOutgoing.setOnClickListener {
             val intent = Intent(requireContext(), OutgoingSetting::class.java)
             intent.putExtra("USER_ID", userid)
             startActivity(intent)
@@ -141,5 +143,39 @@ class HomeFragment : Fragment() {
             totalIncome = totalIncome,
             totalSpend = totalSpend
         )
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        cardContainer = view.findViewById(R.id.cardContainer)
+
+        showRandomCards()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // 페이지 재방문 시 카드 교체
+        showRandomCards()
+    }
+
+    private fun showRandomCards() {
+        cardContainer.removeAllViews()
+
+        val randomCards = allCards.shuffled().take(3)
+
+        randomCards.forEach { card ->
+            val cardView = LayoutInflater.from(requireContext())
+                .inflate(R.layout.item_edu_card, cardContainer, false)
+
+            cardView.findViewById<ImageView>(R.id.edu_icon)
+                .setImageResource(card.iconRes)
+            cardView.findViewById<TextView>(R.id.edu_title)
+                .text = card.title
+            cardView.findViewById<TextView>(R.id.edu_desc)
+                .text = card.description
+
+            cardContainer.addView(cardView)
+        }
     }
 }
