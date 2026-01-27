@@ -2,22 +2,27 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp">
+    android:padding="16dp">
 
     <!-- 제목 -->
     <TextView
         android:id="@+id/moneyBar_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
         android:background="@drawable/home_text_button"
         android:padding="6dp"
         android:text="나의 잔고"
+        android:textStyle="bold"
         android:textColor="@color/Secondary300"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 
     <!-- ProgressBar -->
     <ProgressBar
@@ -52,4 +57,41 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- 카드 컨테이너 -->
+    <TextView
+        android:id="@+id/eduCard_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/bg_text_button"
+        android:padding="6dp"
+        android:text="한줄 금융 공부"
+        android:textStyle="bold"
+        android:textColor="@color/Primary800"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPercent" />
+
+    <LinearLayout
+        android:id="@+id/cardContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eduCard_Title" />
+
+    <ImageView
+        android:id="@+id/home_seeding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="72dp"
+        app:layout_constraintStart_toEndOf="@+id/moneyBar_Title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/seedling" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

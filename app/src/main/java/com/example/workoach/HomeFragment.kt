@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.workoach.DBHelper
 import com.example.workoach.R
+import com.example.workoach.com.example.workoach.EduCard
 
 data class MoneySummary(
     val totalIncome: Int,
@@ -20,6 +23,17 @@ data class MoneySummary(
 class HomeFragment : Fragment() {
 
     private lateinit var userid: String
+    private lateinit var cardContainer: LinearLayout
+
+    private val allCards = listOf(
+        EduCard(R.drawable.moneybag, "주식", "회사의 조각", "주식을 사면 → 그 회사의 주인 중 한 명\n" + "회사가 잘 되면 → 주식값이 오를 수 있음"),
+        EduCard(R.drawable.briefcase, "펀드", "전문가에게 맡기는 투자", "여러 사람의 돈을 모아서\n" + "전문가가 주식·채권 등에 나눠 투자"),
+        EduCard(R.drawable.charcinc, "ETF", "펀드 + 주식의 장점 합체", "펀드처럼 여러 자산에 분산 투자\n" + "주식처럼 주식시장에 바로 사고팔 수 있음"),
+        EduCard(R.drawable.coin, "금리", "돈의 가격", "금리 ↑ → 대출 이자 부담 커짐 / 예금 이자 많아짐\n" + "금리 ↓ → 대출 쉬워짐 / 예금 이자 적어짐"),
+        EduCard(R.drawable.dollar, "환율", "돈의 교환 비율", "1달러 = 몇 원인가?\n" + "해외 주식, 여행, 수입 물가에 영향"),
+        EduCard(R.drawable.barchart, "CMA", "돈 잠시 쉬게 하는 통장", "투자 대기 자금 보관용\n" + "→ “안 쓰는 돈 잠깐 보관”에 좋음"),
+        EduCard(R.drawable.moneybag, "채권", "나라나 회사에 돈 빌려주기", "정해진 이자 받음\n" + "만기 되면 원금 돌려받음"),
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -96,5 +110,41 @@ class HomeFragment : Fragment() {
             totalIncome = totalIncome,
             totalSpend = totalSpend
         )
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        cardContainer = view.findViewById(R.id.cardContainer)
+
+        showRandomCards()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // 페이지 재방문 시 카드 교체
+        showRandomCards()
+    }
+
+    private fun showRandomCards() {
+        cardContainer.removeAllViews()
+
+        val randomCards = allCards.shuffled().take(3)
+
+        randomCards.forEach { card ->
+            val cardView = LayoutInflater.from(requireContext())
+                .inflate(R.layout.item_edu_card, cardContainer, false)
+
+            cardView.findViewById<ImageView>(R.id.edu_icon)
+                .setImageResource(card.iconRes)
+            cardView.findViewById<TextView>(R.id.edu_title)
+                .text = card.title
+            cardView.findViewById<TextView>(R.id.edu_subtitle)
+                .text = card.subTitle
+            cardView.findViewById<TextView>(R.id.edu_desc)
+                .text = card.description
+
+            cardContainer.addView(cardView)
+        }
     }
 }
