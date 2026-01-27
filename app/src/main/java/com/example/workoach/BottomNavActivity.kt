@@ -15,35 +15,30 @@ class BottomNavActivity : AppCompatActivity() {
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav)
 
-        // 첫 화면 = Home
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, HomeFragment())
             .commit()
 
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
-
                 R.id.tab_home -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.container, HomeFragment())
                         .commit()
                     true
                 }
-
                 R.id.tab_coach -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.container, CoachFragment())
                         .commit()
                     true
                 }
-
                 R.id.tab_mypage -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.container, MyPageFragment())
                         .commit()
                     true
                 }
-
                 else -> false
             }
         }

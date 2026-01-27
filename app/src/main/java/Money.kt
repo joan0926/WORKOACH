@@ -8,7 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import java.util.Calendar
+import java.util.*
 
 class Money : AppCompatActivity() {
 
@@ -28,12 +28,9 @@ class Money : AppCompatActivity() {
         editTextDate.hint = "$year.00.00 ▼"
 
         btnMoney.setOnClickListener {
-
-            // 🔥 HomeActivity ❌ → BottomNavActivity ✅
             val intent = Intent(this, BottomNavActivity::class.java)
             intent.putExtra("USER_ID", userId)
             startActivity(intent)
-
             finish()
         }
 
