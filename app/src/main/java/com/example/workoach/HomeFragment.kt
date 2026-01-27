@@ -1,5 +1,6 @@
 package com.example.workcoach
 
+import android.R.attr.button
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import com.example.workoach.DBHelper
 import com.example.workoach.IncomeSetting
@@ -18,8 +20,8 @@ import com.example.workoach.OutgoingSetting
 import com.example.workoach.R
 import com.example.workoach.com.example.workoach.EduCard
 
-private val HomeFragment.btnOutgoing: Any
-private val HomeFragment.btnIncome: Any
+//private val HomeFragment.btnOutgoing: Any
+//private val HomeFragment.btnIncome: Any
 
 data class MoneySummary(
     val totalIncome: Int,
@@ -56,7 +58,7 @@ class HomeFragment : Fragment() {
         userid= requireActivity().intent.getStringExtra("USER_ID") ?: ""
         val moneyBar = view.findViewById<ProgressBar>(R.id.moneyBar)
         val tvPercent = view.findViewById<TextView>(R.id.tvPercent)
-        val button = view.findViewById<Button>(R.id.button)
+        //val button = view.findViewById<Button>(R.id.button)
 
 
         val summary = getMoneySummary(userid)
@@ -85,7 +87,7 @@ class HomeFragment : Fragment() {
         }
 
         // ✅ 수입 등록 버튼
-        btnIncome.setOnClickListener {
+        /*btnIncome.setOnClickListener {
             val intent = Intent(requireContext(), IncomeSetting::class.java)
             intent.putExtra("USER_ID", userid)
             startActivity(intent)
@@ -96,7 +98,7 @@ class HomeFragment : Fragment() {
             val intent = Intent(requireContext(), OutgoingSetting::class.java)
             intent.putExtra("USER_ID", userid)
             startActivity(intent)
-        }
+        }*/
 
         return view
     }

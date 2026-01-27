@@ -152,13 +152,13 @@
         android:layout_height="44dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
+        android:backgroundTint="#F3EFC9"
         android:text="수입 등록"
         android:textColor="#145127"
-        android:backgroundTint="#F3EFC9"
-        app:layout_constraintTop_toBottomOf="@id/layout_remain"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btnOutgoing"
-        app:layout_constraintHorizontal_weight="1"/>
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_remain" />
 
     <!-- 지출 등록 -->
     <Button
@@ -184,11 +184,11 @@
         android:background="@drawable/bg_text_button"
         android:padding="6dp"
         android:text="한줄 금융 공부"
-        android:textStyle="bold"
         android:textColor="@color/Primary800"
         android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPercent" />
+        app:layout_constraintTop_toBottomOf="@+id/btnIncome" />
 
     <LinearLayout
         android:id="@+id/cardContainer"
