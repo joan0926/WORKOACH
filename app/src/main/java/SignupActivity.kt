@@ -18,7 +18,6 @@ class Money : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_money)
 
-        // 🔹 View 연결
         val editTextDate = findViewById<EditText>(R.id.text_MoneyDate)
         val workName = findViewById<EditText>(R.id.text_WorkName)
         val workMoney = findViewById<EditText>(R.id.text_TakeMoney)
@@ -26,17 +25,17 @@ class Money : AppCompatActivity() {
 
         val userId = intent.getStringExtra("USER_ID")
 
-        // 🔹 힌트 설정
+        // 힌트 설정
         val year = Calendar.getInstance().get(Calendar.YEAR)
         editTextDate.hint = "$year.00.00 ▼"
 
-        // 🔹 DatePicker 추가
+        // DatePicker
         editTextDate.setOnClickListener {
             val calendar = Calendar.getInstance()
             DatePickerDialog(
                 this,
-                { _, selectedYear, selectedMonth, selectedDay ->
-                    editTextDate.setText("${selectedYear}년 ${selectedMonth + 1}월 ${selectedDay}일")
+                { _, y, m, d ->
+                    editTextDate.setText("${y}년 ${m + 1}월 ${d}일")
                 },
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
@@ -44,7 +43,7 @@ class Money : AppCompatActivity() {
             ).show()
         }
 
-        // 🔹 버튼 클릭 → BottomNavActivity로 이동
+        // 버튼 클릭 → BottomNavActivity 이동
         btnMoney.setOnClickListener {
             val intent = Intent(this, BottomNavActivity::class.java)
             intent.putExtra("USER_ID", userId)
@@ -52,7 +51,7 @@ class Money : AppCompatActivity() {
             finish()
         }
 
-        // 🔹 Edge-to-Edge padding 적용
+        // Edge-to-Edge padding
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
