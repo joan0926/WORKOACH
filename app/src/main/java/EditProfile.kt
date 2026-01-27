@@ -30,10 +30,6 @@ class EditProfile : AppCompatActivity() {
         setListeners()
         setupDatePicker()
 
-
-
-
-
     }
 
     private fun initView(){
@@ -41,15 +37,11 @@ class EditProfile : AppCompatActivity() {
         Text_workDate=findViewById<EditText>(R.id.TextemployDate)
         Btn_editprofile=findViewById<Button>(R.id.btneditprofile)
         Btn_Close_editprofile=findViewById<ImageButton>(R.id.btnclose_editprofile)
-
-        //날짜
-
     }
     private fun setListeners(){
         Btn_editprofile.setOnClickListener {
             username = Text_username.text.toString().trim()
             workDate = Text_workDate.text.toString().trim()
-
 
             if(username.isEmpty() || workDate.isEmpty()){
                 Toast.makeText(this, "모든 항목을 입력하세요", Toast.LENGTH_SHORT).show()
@@ -105,7 +97,6 @@ class EditProfile : AppCompatActivity() {
             val datePickerDialog = DatePickerDialog(
                 this,
                 { _, selectedYear, selectedMonth, selectedDay ->
-                    // 월은 0부터 시작하니까 +1
                     val date = "${selectedYear}년 ${selectedMonth + 1}월 ${selectedDay}일"
 
                     Text_workDate.setText(date)

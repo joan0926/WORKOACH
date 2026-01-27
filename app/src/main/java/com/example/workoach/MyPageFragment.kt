@@ -1,6 +1,7 @@
 package com.example.workcoach
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +9,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import com.example.workoach.AccountManagement
 import com.example.workoach.DBHelper
 import com.example.workoach.R
 
@@ -20,6 +23,29 @@ class MyPageFragment : Fragment() {
     private lateinit var Btn_accountmanagement: Button
 
     private var userid = ""
+
+    private val accountManagementLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ){result ->
+          when (result.resultCode){
+              AccountManagement.RESULT_LOGOUT -> {
+                  showCustomDialog(
+                      R.layout.check_logout,
+                      R.id.btn_falselogout
+                  )
+              }
+              AccountManagement.RESULT_DELETE -> {
+                  showCustomDialog(R.layout.check_delaccount,
+                      R.id.btn_falsedelaccount)
+              }
+              AccountManagement.RESULT_CHANGE_PW -> {
+                  showCustomDialog(R.layout.activity_changepw,
+                      R.id.btnclose_changepw)
+              }
+          }
+
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,7 +73,8 @@ class MyPageFragment : Fragment() {
         }
 
         Btn_accountmanagement.setOnClickListener {
-            showCustomDialog(R.layout.activity_accountmanagement, R.id.btnclose_accountmanage)
+            val intent = Intent(requireContext(), AccountManagement::class.java)
+            accountManagementLauncher.launch(intent)
         }
 
         return view

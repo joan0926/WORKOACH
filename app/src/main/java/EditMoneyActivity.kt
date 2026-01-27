@@ -1,8 +1,6 @@
 package com.example.workoach
 
 import android.app.DatePickerDialog
-import android.content.Intent
-import android.icu.util.Calendar
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -31,9 +29,7 @@ class EditMoneyActivity : AppCompatActivity(){
         initView()
         setListeners()
         setupDatePicker()
-        Btn_Close.setOnClickListener {
-            finish()
-        }
+
 
     }
 
@@ -46,30 +42,6 @@ class EditMoneyActivity : AppCompatActivity(){
     }
 
     private fun setListeners() {
-        Text_SalaryDate.setOnClickListener {
-            val calendar = java.util.Calendar.getInstance()
-
-            val year = calendar.get(java.util.Calendar.YEAR)
-            val month = calendar.get(java.util.Calendar.MONTH)
-            val day = calendar.get(java.util.Calendar.DAY_OF_MONTH)
-
-            val datePickerDialog = DatePickerDialog(
-                this,
-                { _, selectedYear, selectedMonth, selectedDay ->
-                    // 월은 0부터 시작하니까 +1
-                    val date = "${selectedYear}년 ${selectedMonth + 1}월 ${selectedDay}일"
-
-                    Text_SalaryDate.setText(date)
-                },
-                year,
-                month,
-                day
-
-
-            )
-
-            datePickerDialog.show()
-        }
 
 
         //월급 수정 버튼
@@ -85,7 +57,6 @@ class EditMoneyActivity : AppCompatActivity(){
             }
 
             updateJobInfo(userID, companyname, textsalary, datesalary)
-            //액티비티 종료
             finish()
         }
         Btn_Close.setOnClickListener {

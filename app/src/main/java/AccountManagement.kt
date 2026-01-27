@@ -9,6 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 
 class AccountManagement : AppCompatActivity() {
 
+    companion object{
+        const val RESULT_LOGOUT = 1001
+        const val RESULT_DELETE = 1002
+        const val RESULT_CHANGE_PW = 1003
+    }
+
     private lateinit var Btn_logout : Button
     private lateinit var Btn_deluser : Button
     private lateinit var Btn_changepw : Button
@@ -18,20 +24,24 @@ class AccountManagement : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_accountmanagement)
 
+        val dialog = Dialog(this)
+
         initView()
 
         //로그아웃 팝업
         Btn_logout.setOnClickListener {
-            //로그아웃 취소시 팝업창 닫힘
-            showCustomDialog(R.layout.check_logout,R.id.btn_falselogout)
+            setResult(RESULT_LOGOUT)
+            finish()
         }
         //계정 삭제 팝업
         Btn_deluser.setOnClickListener {
-            showCustomDialog(R.layout.check_delaccount,R.id.btn_falsedelaccount)
+            setResult(RESULT_DELETE)
+            finish()
         }
         //비밀번호 변경 팝업
         Btn_changepw.setOnClickListener {
-            showCustomDialog(R.layout.activity_changepw, R.id.btnclose_changepw)
+            setResult(RESULT_CHANGE_PW)
+            finish()
         }
     }
 

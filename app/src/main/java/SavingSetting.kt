@@ -1,5 +1,6 @@
 package com.example.workoach
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -23,9 +24,8 @@ class SavingSetting : AppCompatActivity() {
 
         initView()
         setListeners()
-        Btn_Close_saving.setOnClickListener {
-            finish()
-        }
+        setupDatePicker()
+
 
     }
     private fun initView(){
@@ -50,6 +50,10 @@ class SavingSetting : AppCompatActivity() {
             insertSaving(userid, saving, savingDate)
             finish()
         }
+        Btn_Close_saving.setOnClickListener {
+            finish()
+        }
+
     }
 
     private fun insertSaving(userid: String, saving:String, savingDate: String){
@@ -66,5 +70,29 @@ class SavingSetting : AppCompatActivity() {
         db.execSQL(sql, arrayOf(userid, state, money, savingDate))
         db.close()
 
+    }
+
+    private fun setupDatePicker(){
+        Text_savingDate.setOnClickListener {
+            val calendar = java.util.Calendar.getInstance()
+
+            val year = calendar.get(java.util.Calendar.YEAR)
+            val month = calendar.get(java.util.Calendar.MONTH)
+            val day = calendar.get(java.util.Calendar.DAY_OF_MONTH)
+
+            val datePickerDialog = DatePickerDialog(
+                this,
+                { _, selectedYear, selectedMonth, selectedDay ->
+                    val date = "${selectedYear}년 ${selectedMonth + 1}월 ${selectedDay}일"
+
+                    Text_savingDate.setText(date)
+                },
+                year,
+                month,
+                day
+            )
+
+            datePickerDialog.show()
+        }
     }
 }
