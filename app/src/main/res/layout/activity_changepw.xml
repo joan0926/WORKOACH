@@ -1,186 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialog_change_pw_root"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="16dp">
 
+    <!-- 닫기 버튼 -->
     <ImageButton
         android:id="@+id/btnclose_changepw"
         android:layout_width="44dp"
         android:layout_height="44dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:background="@drawable/btn_close_bg"
         android:backgroundTint="@null"
         android:scaleType="centerInside"
         android:src="@drawable/ic_close"
-        android:text=""
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
+    <!-- 헤더 -->
     <TextView
         android:id="@+id/changepw_header"
-        android:layout_width="142dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="89dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="89dp"
-        android:fontFamily="@font/semi_bold"
-        android:gravity="center"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:text="계정 관리"
         android:textColor="@color/Primary800"
         android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:gravity="center"
+        android:fontFamily="@font/semi_bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnclose_changepw"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- 기존 비밀번호 Label -->
     <TextView
         android:id="@+id/originpw"
-        style="@style/TextAppearance.Material3.TitleLarge"
-        android:layout_width="140dp"
+        android:layout_width="wrap_content"
         android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/semi_bold"
         android:text="기존 비밀번호 입력"
         android:textColor="@color/Primary800"
         android:textSize="16dp"
+        android:fontFamily="@font/semi_bold"
+        app:layout_constraintTop_toBottomOf="@id/btnclose_changepw"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnclose_changepw" />
+        android:layout_marginTop="16dp"/>
 
     <TextView
         android:id="@+id/text_orginPWConfirm_err"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="31dp"
-        android:fontFamily="@font/medium"
         android:text="기존 비밀번호와 일치하지 않습니다"
         android:textColor="@color/Warning"
         android:textSize="10dp"
+        android:fontFamily="@font/medium"
         android:visibility="gone"
-        app:layout_constraintStart_toEndOf="@+id/originpw"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
+        app:layout_constraintStart_toEndOf="@id/originpw"
+        app:layout_constraintTop_toTopOf="@id/originpw"
+        android:layout_marginStart="8dp"/>
 
     <EditText
         android:id="@+id/Textoriginpw"
-        android:layout_width="296dp"
+        android:layout_width="0dp"
         android:layout_height="44dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/edittext_outline"
-        android:ems="10"
-        android:fontFamily="@font/medium"
-        android:gravity="center"
         android:hint="비밀번호를 입력하세요"
         android:inputType="textPassword"
+        android:gravity="center"
+        android:fontFamily="@font/medium"
         android:textColorHint="@color/TextSecondary"
         android:textSize="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/edittext_outline"
+        app:layout_constraintTop_toBottomOf="@id/originpw"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/originpw" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
 
+    <!-- 새 비밀번호 Label -->
     <TextView
         android:id="@+id/newpw"
-        style="@style/TextAppearance.Material3.TitleLarge"
-        android:layout_width="90dp"
+        android:layout_width="wrap_content"
         android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/semi_bold"
         android:text="새 비밀번호"
         android:textColor="@color/Primary800"
         android:textSize="16dp"
+        android:fontFamily="@font/semi_bold"
+        app:layout_constraintTop_toBottomOf="@id/Textoriginpw"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Textoriginpw" />
+        android:layout_marginTop="16dp"/>
 
     <EditText
         android:id="@+id/Textnewpw"
-        android:layout_width="296dp"
+        android:layout_width="0dp"
         android:layout_height="44dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/edittext_outline"
-        android:ems="10"
-        android:fontFamily="@font/medium"
-        android:gravity="center"
         android:hint="새 비밀번호를 입력하세요"
         android:inputType="textPassword"
+        android:gravity="center"
+        android:fontFamily="@font/medium"
         android:textColorHint="@color/TextSecondary"
         android:textSize="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/edittext_outline"
+        app:layout_constraintTop_toBottomOf="@id/newpw"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/newpw" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
 
+    <!-- 새 비밀번호 확인 Label -->
     <TextView
         android:id="@+id/newpw_confirm"
-        style="@style/TextAppearance.Material3.TitleLarge"
-        android:layout_width="95dp"
+        android:layout_width="wrap_content"
         android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/semi_bold"
         android:text="비밀번호 확인"
         android:textColor="@color/Primary800"
         android:textSize="16dp"
+        android:fontFamily="@font/semi_bold"
+        app:layout_constraintTop_toBottomOf="@id/Textnewpw"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Textnewpw" />
+        android:layout_marginTop="16dp"/>
 
     <TextView
         android:id="@+id/text_newPasswordConfirm_err"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="12dp"
-        android:fontFamily="@font/medium"
         android:text="비밀번호가 일치하지 않습니다"
         android:textColor="@color/Warning"
         android:textSize="10dp"
+        android:fontFamily="@font/medium"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/Textnewpw"
-        app:layout_constraintStart_toEndOf="@+id/newpw_confirm"/>
-
+        app:layout_constraintTop_toBottomOf="@id/Textnewpw"
+        app:layout_constraintStart_toEndOf="@id/newpw_confirm"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"/>
 
     <EditText
         android:id="@+id/Textnewpw_confirm"
-        android:layout_width="296dp"
+        android:layout_width="0dp"
         android:layout_height="44dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/edittext_outline"
-        android:ems="10"
-        android:fontFamily="@font/medium"
-        android:gravity="center"
         android:hint="새 비밀번호를 한 번 더 입력하세요"
         android:inputType="textPassword"
+        android:gravity="center"
+        android:fontFamily="@font/medium"
         android:textColorHint="@color/TextSecondary"
         android:textSize="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/edittext_outline"
+        app:layout_constraintTop_toBottomOf="@id/newpw_confirm"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/newpw_confirm" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
 
+    <!-- 비밀번호 변경 버튼 -->
     <Button
         android:id="@+id/btn_changepw"
-        android:layout_width="140dp"
+        android:layout_width="0dp"
         android:layout_height="44dp"
-        android:layout_marginStart="172dp"
-        android:layout_marginTop="380dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/Secondary600"
-        android:fontFamily="@font/medium"
         android:text="비밀번호 변경하기"
         android:textColor="@color/Primary700"
         android:textSize="12dp"
+        android:fontFamily="@font/medium"
+        android:backgroundTint="@color/Secondary600"
         app:cornerRadius="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Textnewpw_confirm"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
