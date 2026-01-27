@@ -1,19 +1,15 @@
 package com.example.workcoach
 
+import android.app.AlertDialog
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import com.example.workoach.DBHelper
 import com.example.workoach.R
-import com.example.workoach.com.example.workoach.EduCard
-
-data class MoneySummary(val totalIncome: Int, val totalSpend: Int)
+import java.text.DecimalFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
@@ -21,94 +17,188 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         requireActivity().intent.getStringExtra("USER_ID") ?: ""
     }
 
-    private lateinit var cardContainer: LinearLayout
-
-    private val allCards = listOf(
-        EduCard(R.drawable.moneybag, "금리", "돈의 가격", "금리 ↑ → 대출 이자 부담 커짐 / 예금 이자 많아짐\n" +
-                "금리 ↓ → 대출 쉬워짐 / 예금 이자 적어짐"),
-        EduCard(R.drawable.barchart, "환율", "돈의 교환 비율", "1달러 = 몇 원인가?\n" +
-                "해외 주식, 여행, 수입 물가에 영향"),
-        EduCard(R.drawable.briefcase, "CMA", "돈 잠시 쉬게 하는 통장", "투자 대기 자금 보관용\n" +
-                "→ “안 쓰는 돈 잠깐 보관”에 좋음"),
-        EduCard(R.drawable.coin, "채권", "나라나 회사에 돈 빌려주기", "정해진 이자 받음\n" +
-                "만기 되면 원금 돌려받음"),
-        EduCard(R.drawable.dollar, "주식", "회사의 조각", "주식을 사면 → 그 회사의 주인 중 한 명\n" +
-                "회사가 잘 되면 → 주식값이 오를 수 있음"),
-        EduCard(R.drawable.charcinc, "펀드", "전문가에게 맡기는 투자", "여러 사람의 돈을 모아서\n" +
-                "전문가가 주식·채권 등에 나눠 투자"),
-        EduCard(R.drawable.dollar, "ETF", "펀드 + 주식의 장점 합체", "펀드처럼 여러 자산에 분산 투자\n" +
-                "주식처럼 주식시장에 바로 사고팔 수 있음")
-
-    )
+    private lateinit var moneyBar: ProgressBar
+    private lateinit var tvPercent: TextView
+    private lateinit var tvTotal: TextView
+    private lateinit var tvSpent: TextView
+    private lateinit var tvRemain: TextView
+    private lateinit var btnIncome: Button
+    private lateinit var btnOutgoing: Button
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val moneyBar = view.findViewById<ProgressBar>(R.id.moneyBar)
-        val tvPercent = view.findViewById<TextView>(R.id.tvPercent)
+        // View 연결
+        moneyBar = view.findViewById(R.id.moneyBar)
+        tvPercent = view.findViewById(R.id.tvPercent)
+        tvTotal = view.findViewById(R.id.tvTotalMoney)
+        tvSpent = view.findViewById(R.id.tvSpentMoney)
+        tvRemain = view.findViewById(R.id.tvRemainMoney)
+        btnIncome = view.findViewById(R.id.btnIncome)
+        btnOutgoing = view.findViewById(R.id.btnOutgoing)
 
-        val summary = getMoneySummary(userid)
-        val totalMoney = summary.totalIncome
-        val usingMoney = summary.totalSpend
+        // 처음 화면 갱신
+        refreshUI()
 
-        moneyBar.max = totalMoney
-        moneyBar.progress = usingMoney
+        // 수입 버튼
+        btnIncome.setOnClickListener {
+            showMoneyDialog(0)
+        }
 
-        val percent = if (totalMoney > 0) (usingMoney * 100 / totalMoney) else 0
+        // 지출 버튼
+        btnOutgoing.setOnClickListener {
+            showMoneyDialog(1)
+        }
+    }
+
+    // ============================
+    // 전체 화면 갱신
+    // ============================
+    private fun refreshUI() {
+
+        val salary = getSalary()              // 월급
+        val income = getTotalIncome()         // 수입
+        val spend = getTotalSpend()           // 지출
+
+        val total = salary + income
+        val remain = total - spend
+
+        // ProgressBar
+        moneyBar.max = total
+        moneyBar.progress = spend
+
+        val percent =
+            if (total > 0) (spend * 100 / total) else 0
+
         tvPercent.text = "$percent%"
 
-        cardContainer = view.findViewById(R.id.cardContainer)
-
-        showRandomCards()
+        // 금액 표시
+        tvTotal.text = formatMoney(total)
+        tvSpent.text = formatMoney(spend)
+        tvRemain.text = formatMoney(remain)
     }
 
-    private fun getMoneySummary(userID: String): MoneySummary {
-        val dbHelper = DBHelper(requireContext())
-        val db = dbHelper.readableDatabase
+    // ============================
+    // 월급 가져오기
+    // ============================
+    private fun getSalary(): Int {
 
-        val incomeCursor = db.rawQuery(
-            "SELECT IFNULL(SUM(money),0) FROM moneyTBL WHERE userid = ? AND state = 0",
-            arrayOf(userID)
-        )
-        val totalIncome = if (incomeCursor.moveToFirst()) incomeCursor.getInt(0) else 0
-        incomeCursor.close()
+        val db = DBHelper(requireContext()).readableDatabase
 
-        val spendCursor = db.rawQuery(
-            "SELECT IFNULL(SUM(money),0) FROM moneyTBL WHERE userid = ? AND state IN (1,2)",
-            arrayOf(userID)
+        val cursor = db.rawQuery(
+            "SELECT IFNULL(jobsalary,0) FROM jobTBL WHERE userid = ?",
+            arrayOf(userid)
         )
-        val totalSpend = if (spendCursor.moveToFirst()) spendCursor.getInt(0) else 0
-        spendCursor.close()
+
+        val salary =
+            if (cursor.moveToFirst()) cursor.getInt(0) else 0
+
+        cursor.close()
+        db.close()
+
+        return salary
+    }
+
+    // ============================
+    // 수입 합계
+    // ============================
+    private fun getTotalIncome(): Int {
+
+        val db = DBHelper(requireContext()).readableDatabase
+
+        val cursor = db.rawQuery(
+            "SELECT IFNULL(SUM(money),0) FROM moneyTBL WHERE userid=? AND state=0",
+            arrayOf(userid)
+        )
+
+        val result =
+            if (cursor.moveToFirst()) cursor.getInt(0) else 0
+
+        cursor.close()
+        db.close()
+
+        return result
+    }
+
+    // ============================
+    // 지출 합계
+    // ============================
+    private fun getTotalSpend(): Int {
+
+        val db = DBHelper(requireContext()).readableDatabase
+
+        val cursor = db.rawQuery(
+            "SELECT IFNULL(SUM(money),0) FROM moneyTBL WHERE userid=? AND state=1",
+            arrayOf(userid)
+        )
+
+        val result =
+            if (cursor.moveToFirst()) cursor.getInt(0) else 0
+
+        cursor.close()
+        db.close()
+
+        return result
+    }
+
+    // ============================
+    // 수입/지출 입력창
+    // ============================
+    private fun showMoneyDialog(state: Int) {
+
+        val editText = EditText(requireContext())
+        editText.inputType = android.text.InputType.TYPE_CLASS_NUMBER
+
+        val title =
+            if (state == 0) "수입 입력" else "지출 입력"
+
+        AlertDialog.Builder(requireContext())
+            .setTitle(title)
+            .setView(editText)
+            .setPositiveButton("등록") { _, _ ->
+
+                val moneyText = editText.text.toString()
+
+                if (moneyText.isNotEmpty()) {
+                    insertMoney(moneyText.toInt(), state)
+                    refreshUI()
+                }
+            }
+            .setNegativeButton("취소", null)
+            .show()
+    }
+
+    // ============================
+    // DB 저장
+    // ============================
+    private fun insertMoney(money: Int, state: Int) {
+
+        val db = DBHelper(requireContext()).writableDatabase
+
+        val date =
+            SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                .format(Date())
+
+        val sql = """
+            INSERT INTO moneyTBL(userid,state,money,date)
+            VALUES(?,?,?,?)
+        """
+
+        db.execSQL(
+            sql,
+            arrayOf(userid, state, money, date)
+        )
 
         db.close()
-        return MoneySummary(totalIncome, totalSpend)
     }
 
-    override fun onResume() {
-        super.onResume()
-        // 페이지 재방문 시 카드 교체
-        showRandomCards()
-    }
+    // ============================
+    // 돈 포맷
+    // ============================
+    private fun formatMoney(money: Int): String {
 
-    private fun showRandomCards() {
-        cardContainer.removeAllViews()
+        val df = DecimalFormat("#,###")
 
-        val randomCards = allCards.shuffled().take(3)
-
-        randomCards.forEach { card ->
-            val cardView = LayoutInflater.from(requireContext())
-                .inflate(R.layout.item_edu_card, cardContainer, false)
-
-            cardView.findViewById<ImageView>(R.id.edu_icon)
-                .setImageResource(card.iconRes)
-            cardView.findViewById<TextView>(R.id.edu_title)
-                .text = card.title
-            cardView.findViewById<TextView>(R.id.edu_subtitle)
-                .text = card.subTitle
-            cardView.findViewById<TextView>(R.id.edu_desc)
-                .text = card.description
-
-            cardContainer.addView(cardView)
-        }
+        return df.format(money) + " 원"
     }
 }
