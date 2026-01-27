@@ -171,6 +171,8 @@ class HomeFragment : Fragment() {
                 .setImageResource(card.iconRes)
             cardView.findViewById<TextView>(R.id.edu_title)
                 .text = card.title
+            cardView.findViewById<TextView>(R.id.edu_subtitle)
+                .text = card.subTitle
             cardView.findViewById<TextView>(R.id.edu_desc)
                 .text = card.description
 
