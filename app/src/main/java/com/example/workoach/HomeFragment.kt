@@ -53,6 +53,9 @@ class HomeFragment : Fragment() {
         button.setOnClickListener {
             val dialog = Dialog(requireContext())
             dialog.setContentView(R.layout.activity_editmoney)
+
+            dialog.setCancelable(false) // 바깥 터치로 닫히게 할지 (원하면 true)
+
             dialog.show()
         }
 
