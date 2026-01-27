@@ -25,7 +25,7 @@ class EditMoneyActivity : AppCompatActivity(){
 
         userID = intent.getStringExtra("USER_ID") ?: return
 
-        setFinishOnTouchOutside(false)
+        //setFinishOnTouchOutside(false)
         initView()
         setListeners()
         setupDatePicker()
