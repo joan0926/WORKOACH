@@ -22,17 +22,15 @@ class Money : AppCompatActivity() {
         val workmoney = findViewById<EditText>(R.id.text_TakeMoney)
         val btnMoney = findViewById<Button>(R.id.button_Money)
 
-        // USER_ID 받기
         val userId = intent.getStringExtra("USER_ID")
 
-        // 급여일 힌트
         val year = Calendar.getInstance().get(Calendar.YEAR)
         editTextDate.hint = "$year.00.00 ▼"
 
-        // 버튼 클릭 → ProgressActivity 이동
         btnMoney.setOnClickListener {
 
-            val intent = Intent(this, HomeActivity::class.java)
+            // 🔥 HomeActivity ❌ → BottomNavActivity ✅
+            val intent = Intent(this, BottomNavActivity::class.java)
             intent.putExtra("USER_ID", userId)
             startActivity(intent)
 

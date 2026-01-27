@@ -1,6 +1,5 @@
 package com.example.workoach
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.workcoach.CoachFragment
@@ -16,21 +15,32 @@ class BottomNavActivity : AppCompatActivity() {
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav)
 
+        // 첫 화면 = Home
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, HomeFragment())
+            .commit()
+
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
 
                 R.id.tab_home -> {
-                    startActivity(Intent(this, HomeActivity::class.java))
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, HomeFragment())
+                        .commit()
                     true
                 }
 
                 R.id.tab_coach -> {
-                    startActivity(Intent(this, CoachActivity::class.java))
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, CoachFragment())
+                        .commit()
                     true
                 }
 
                 R.id.tab_mypage -> {
-                    startActivity(Intent(this, MypageActivity::class.java))
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, MyPageFragment())
+                        .commit()
                     true
                 }
 
@@ -39,5 +49,3 @@ class BottomNavActivity : AppCompatActivity() {
         }
     }
 }
-
-
