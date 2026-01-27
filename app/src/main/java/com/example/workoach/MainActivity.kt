@@ -7,11 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-
-// ⚠️ 반드시 SignupActivity, Login 클래스 경로 확인!
-// 현재 둘 다 com.example.workoach 패키지에 있는 것으로 가정
-import com.example.workoach.SignupActivity
-import com.example.workoach.Login
+import kotlin.jvm.java
 
 class MainActivity : AppCompatActivity() {
 
