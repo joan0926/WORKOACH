@@ -14,6 +14,8 @@ import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import com.example.workoach.AccountManagement
 import com.example.workoach.DBHelper
+import com.example.workoach.EditMoneyActivity
+import com.example.workoach.EditProfile
 import com.example.workoach.R
 
 class MyPageFragment : Fragment() {
@@ -65,11 +67,17 @@ class MyPageFragment : Fragment() {
         balance.text = calSavingnSalaryPercent(userid, 20).toString()
 
         Btn_editprofile.setOnClickListener {
-            showCustomDialog(R.layout.activity_editprofile, R.id.btnclose_editprofile)
+            //showCustomDialog(R.layout.activity_editprofile, R.id.btnclose_editprofile)
+            val intent = Intent(requireContext(), EditProfile::class.java)
+            intent.putExtra("USER_ID", userid)
+            startActivity(intent)
         }
 
         Btn_editmoney.setOnClickListener {
-            showCustomDialog(R.layout.activity_editmoney, R.id.btncloseeditmoney)
+            //showCustomDialog(R.layout.activity_editmoney, R.id.btncloseeditmoney)
+            val intent = Intent(requireContext(), EditMoneyActivity::class.java)
+            intent.putExtra("USER_ID", userid)
+            startActivity(intent)
         }
 
         Btn_accountmanagement.setOnClickListener {
