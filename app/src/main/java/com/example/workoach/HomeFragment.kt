@@ -7,6 +7,7 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import com.example.workoach.DBHelper
 import com.example.workoach.R
+import com.example.workoach.com.example.workoach.EduCard
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -24,6 +25,59 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private lateinit var tvRemain: TextView
     private lateinit var btnIncome: Button
     private lateinit var btnOutgoing: Button
+    private lateinit var cardContainer: LinearLayout
+
+    private val eduCards = listOf(
+
+        EduCard(
+            R.drawable.briefcase,
+            "주식",
+            "회사의 조각",
+            "주식을 사면 → 그 회사의 주인 중 한 명\n회사가 잘 되면 → 주식값이 오를 수 있음"
+        ),
+
+        EduCard(
+            R.drawable.coin,
+            "펀드",
+            "전문가에게 맡기는 투자",
+            "여러 사람의 돈을 모아서\n전문가가 주식·채권 등에 나눠 투자"
+        ),
+
+        EduCard(
+            R.drawable.dollar,
+            "ETF",
+            "펀드 + 주식의 장점 합체",
+            "펀드처럼 여러 자산에 분산 투자\n주식처럼 주식시장에서 바로 사고팔 수 있음"
+        ),
+
+        EduCard(
+            R.drawable.charcinc,
+            "금리",
+            "돈의 가격",
+            "금리 ↑ → 대출 이자 부담 커짐 / 예금 이자 많아짐\n금리 ↓ → 대출 쉬워짐 / 예금 이자 적어짐"
+        ),
+
+        EduCard(
+            R.drawable.barchart,
+            "환율",
+            "돈의 교환 비율",
+            "1달러 = 몇 원인가?\n해외 주식, 여행, 수입 물가에 영향"
+        ),
+
+        EduCard(
+            R.drawable.coin,
+            "CMA",
+            "돈 잠시 쉬게 하는 통장",
+            "투자 대기 자금 보관용\n→ \"안 쓰는 돈 잠깐 보관\"에 좋음"
+        ),
+
+        EduCard(
+            R.drawable.dollar,
+            "채권",
+            "나라나 회사에 돈 빌려주기",
+            "정해진 이자 받음\n만기 되면 원금 돌려받음"
+        ),
+    )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,6 +90,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         tvRemain = view.findViewById(R.id.tvRemainMoney)
         btnIncome = view.findViewById(R.id.btnIncome)
         btnOutgoing = view.findViewById(R.id.btnOutgoing)
+        cardContainer = view.findViewById(R.id.cardContainer)
 
         // 처음 화면 갱신
         refreshUI()
@@ -49,6 +104,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         btnOutgoing.setOnClickListener {
             showMoneyDialog(1)
         }
+
+        loadEduCards()
     }
 
     // ============================
@@ -200,5 +257,38 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val df = DecimalFormat("#,###")
 
         return df.format(money) + " 원"
+    }
+
+    // 카드 생성 함수
+    private fun loadEduCards() {
+
+        val inflater = layoutInflater
+
+        // 기존 카드 제거 (중요)
+        cardContainer.removeAllViews()
+
+        // 랜덤 3개 선택
+        val randomCards = eduCards.shuffled().take(3)
+
+        for (card in randomCards) {
+
+            val cardView = inflater.inflate(
+                R.layout.item_edu_card,
+                cardContainer,
+                false
+            )
+
+            val icon = cardView.findViewById<ImageView>(R.id.edu_icon)
+            val title = cardView.findViewById<TextView>(R.id.edu_title)
+            val sub = cardView.findViewById<TextView>(R.id.edu_subtitle)
+            val desc = cardView.findViewById<TextView>(R.id.edu_desc)
+
+            icon.setImageResource(card.iconRes)
+            title.text = card.title
+            sub.text = card.subTitle
+            desc.text = card.description
+
+            cardContainer.addView(cardView)
+        }
     }
 }
